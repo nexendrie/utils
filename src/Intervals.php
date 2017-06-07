@@ -13,7 +13,7 @@ use Nette\Utils\Strings;
 class Intervals {
   use \Nette\StaticClass;
   
-  const PATTERN = '/(\{\d+(,\d+)*\})|((\[|\])(\d+|\+Inf|-Inf),(\d+|\+Inf|-Inf)(\[|\]))/';
+  const PATTERN = '/(\{\d+(,\d+)*\})|((?P<start>\[|\])(?P<limit1>\d+|\+Inf|-Inf),(?P<limit2>\d+|\+Inf|-Inf)(?P<end>\[|\]))/';
   
   /**
    * @param string $text
@@ -36,19 +36,20 @@ class Intervals {
       $numbers = explode(",", Strings::trim($interval, "{}"));
       return (in_array($number, $numbers));
     }
-    $interval = str_replace("Inf", PHP_INT_MAX, $interval);
-    $start = Strings::substring($interval, 0, 1);
-    $end = Strings::substring($interval, -1, 1);
-    [$limit1, $limit2] = explode(",", Strings::trim($interval, "[]"));
+    preg_match_all(static::PATTERN, $interval, $matches);
+    $start = $matches["start"][0];
+    $end = $matches["end"][0];
+    $limit1 = (int) str_replace("Inf", PHP_INT_MAX, $matches["limit1"][0]);
+    $limit2 = (int) str_replace("Inf", PHP_INT_MAX, $matches["limit2"][0]);
     if($limit1 > $limit2) {
       return false;
     } elseif($number < $limit1) {
       return false;
     } elseif($number > $limit2) {
       return false;
-    } elseif($number == $limit1 AND $start === "]") {
+    } elseif($number === $limit1 AND $start === "]") {
       return false;
-    } elseif($number == $limit2 AND $end === "[") {
+    } elseif($number === $limit2 AND $end === "[") {
       return false;
     } else {
       return true;
