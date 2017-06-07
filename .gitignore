@@ -1,0 +1,4 @@
+/vendor/
+/public/
+/tests/_temp/
+coverage.*
