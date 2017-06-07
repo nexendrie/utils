@@ -13,7 +13,7 @@ use Nette\Utils\Strings;
 class Intervals {
   use \Nette\StaticClass;
   
-  const PATTERN = '/(\{\d+(,\d+)*\})|((?P<start>\[|\])(?P<limit1>\d+|\+Inf|-Inf),(?P<limit2>\d+|\+Inf|-Inf)(?P<end>\[|\]))/';
+  const PATTERN = '/(\{\d+(,\d+)*\})|((?P<start>\[|\])(?P<limit1>\d+|\-Inf),(?P<limit2>\d+|\+Inf)(?P<end>\[|\]))/';
   
   /**
    * @param string $text
@@ -39,8 +39,8 @@ class Intervals {
     preg_match_all(static::PATTERN, $interval, $matches);
     $start = $matches["start"][0];
     $end = $matches["end"][0];
-    $limit1 = (int) str_replace("Inf", PHP_INT_MAX, $matches["limit1"][0]);
-    $limit2 = (int) str_replace("Inf", PHP_INT_MAX, $matches["limit2"][0]);
+    $limit1 = (int) str_replace("-Inf", PHP_INT_MIN, $matches["limit1"][0]);
+    $limit2 = (int) str_replace("+Inf", PHP_INT_MAX, $matches["limit2"][0]);
     if($limit1 > $limit2) {
       return false;
     } elseif($number < $limit1) {

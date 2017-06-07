@@ -23,6 +23,7 @@ class IntervalsTest extends \Tester\TestCase {
     $this->tryInterval("abc[0,1[abc", "[0,1[");
     $this->tryInterval("abc]0,1[abc", "]0,1[");
     $this->tryInterval("abc]-Inf,+Inf[abc", "]-Inf,+Inf[");
+    $this->tryInterval("]+Inf,-Inf[", NULL);
   }
   
   function testIsInInterval() {
