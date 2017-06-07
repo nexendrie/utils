@@ -34,4 +34,4 @@ pages:
       paths:
       - public
   only:
-  - master@nexendrie/library
+  - master@nexendrie/utils
