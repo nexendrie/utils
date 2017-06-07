@@ -13,7 +13,7 @@ use Nette\Utils\Strings;
 class Intervals {
   use \Nette\StaticClass;
   
-  const PATTERN = '/(\{\d+(,\d+)*\})|((?P<start>\[|\])(?P<limit1>\d+|\-Inf),(?P<limit2>\d+|\+Inf)(?P<end>\[|\]))/';
+  const PATTERN = '/(\{\-?\d+(,\-?\d+)*\})|((?P<start>\[|\])(?P<limit1>\-?\d+|\-Inf),(?P<limit2>\-?\d+|\+Inf)(?P<end>\[|\]))/';
   
   /**
    * @param string $text
