@@ -23,9 +23,8 @@ class Intervals {
     $found = preg_match_all(static::PATTERN, $text, $result);
     if(!$found) {
       return NULL;
-    } else {
-      return $result[0][0];
     }
+    return $result[0][0];
   }
   
   static function isInInterval(int $number, string $interval): bool {
@@ -51,9 +50,8 @@ class Intervals {
       return false;
     } elseif($number === $limit2 AND $end === "[") {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 }
 ?>
