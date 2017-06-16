@@ -1,5 +1,6 @@
 Version 1.0.0+de
 - added trait-based version of Collection
+- added support for unique collections
 
 Version 1.0.0
 - first version

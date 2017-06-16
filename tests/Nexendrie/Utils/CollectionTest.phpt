@@ -73,6 +73,14 @@ class CollectionTest extends \Tester\TestCase {
     }, \OutOfRangeException::class);
   }
   
+  function testUniqueness() {
+    $col = new UniqueCollection;
+    $col[] = new Item("Item 1");
+    Assert::exception(function() use($col) {
+      $col[] = new Item("Item 1");
+    }, \RuntimeException::class, "Duplicate var1 Item 1.");
+  }
+  
   /**
    * @return void
    */

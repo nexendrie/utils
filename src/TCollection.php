@@ -13,6 +13,8 @@ trait TCollection {
   protected $items = [];
   /** @var string Type of items in the collection */
   protected $class;
+  /** @var string|NULL */
+  protected $uniqueProperty = NULL;
   
   /**
    * @return int
@@ -48,7 +50,24 @@ trait TCollection {
   }
   
   /**
+   * @param object $newItem
+   * @return bool
+   */
+  protected function checkUniqueness($newItem): bool {
+    if(is_null($this->uniqueProperty)) {
+      return true;
+    }
+    foreach($this as $item) {
+      if($newItem->{$this->uniqueProperty} === $item->{$this->uniqueProperty}) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  /**
    * @param int|NULL $index
+   * @param object $item
    * @return void
    * @throws \OutOfRangeException
    * @throws \InvalidArgumentException
@@ -56,6 +75,9 @@ trait TCollection {
   function offsetSet($index, $item): void {
     if(!$item instanceof $this->class) {
       throw new \InvalidArgumentException("Argument must be of $this->class type.");
+    } elseif(!$this->checkUniqueness($item)) {
+      $property = $this->uniqueProperty;
+      throw new \RuntimeException("Duplicate $property {$item->$property}.");
     }
     if($index === NULL) {
       $this->items[] = & $item;
