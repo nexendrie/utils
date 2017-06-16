@@ -37,6 +37,8 @@ count($collection); // 1
 
 ```
 
+If you cannot (or do not want to) extends that class, you can also use trait Nexendrie\Utils\TCollection in your class. Do not forget to make the class implement \ArrayAccess, \Countable and \IteratorAggregate interfaces.
+
 Intervals
 ---------
 
