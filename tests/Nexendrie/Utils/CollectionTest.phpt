@@ -14,14 +14,14 @@ class CollectionTest extends \Tester\TestCase {
   /**
    * @return void
    */
-  function setUp() {
+  public function setUp() {
     $this->col = new TestCollection;
   }
   
   /**
    * @return void
    */
-  function testCount() {
+  public function testCount() {
     Assert::same(0, count($this->col));
     $this->col[] = new Item("Item 1");
     Assert::count(1, $this->col);
@@ -30,7 +30,7 @@ class CollectionTest extends \Tester\TestCase {
   /**
    * @return void
    */
-  function testGetIterator() {
+  public function testGetIterator() {
     for($i = 1; $i <= 5; $i++) {
       $this->col[] = new Item("Item 1");
     }
@@ -43,7 +43,7 @@ class CollectionTest extends \Tester\TestCase {
   /**
    * @return void
    */
-  function testOffsetExists() {
+  public function testOffsetExists() {
     Assert::false(isset($this->col[0]));
     $this->col[] = new Item("Item 1");
     Assert::true(isset($this->col[0]));
@@ -52,7 +52,7 @@ class CollectionTest extends \Tester\TestCase {
   /**
    * @return void
    */
-  function testOffsetGet() {
+  public function testOffsetGet() {
     $this->col[] = new Item("Item 1");
     $item = $this->col[0];
     Assert::type(Item::class, $item);
@@ -61,7 +61,7 @@ class CollectionTest extends \Tester\TestCase {
     }, \OutOfRangeException::class);
   }
   
-  function testOffsetSet() {
+  public function testOffsetSet() {
     $this->col[] = new Item("Item 1");
     $this->col[0] = new Item("Item 2");
     Assert::same("Item 2", $this->col[0]->var1);
@@ -73,7 +73,7 @@ class CollectionTest extends \Tester\TestCase {
     }, \OutOfRangeException::class);
   }
   
-  function testUniqueness() {
+  public function testUniqueness() {
     $col = new UniqueCollection;
     $col[] = new Item("Item 1");
     Assert::exception(function() use($col) {
@@ -84,7 +84,7 @@ class CollectionTest extends \Tester\TestCase {
   /**
    * @return void
    */
-  function testOffsetUnset() {
+  public function testOffsetUnset() {
     $this->col[] = new Item("Item 1");
     unset($this->col[0]);
     Assert::false(isset($this->col[0]));

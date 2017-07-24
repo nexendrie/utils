@@ -12,7 +12,7 @@ class Item {
   /** @var string */
   public $var1;
   
-  function __construct(string $var1) {
+  public function __construct(string $var1) {
     $this->var1 = $var1;
   }
 }

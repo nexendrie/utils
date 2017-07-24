@@ -19,14 +19,14 @@ trait TCollection {
   /**
    * @return int
    */
-  function count(): int {
+  public function count(): int {
     return count($this->items);
   }
   
   /**
    * @return \ArrayIterator
    */
-  function getIterator(): \ArrayIterator {
+  public function getIterator(): \ArrayIterator {
     return new \ArrayIterator($this->items);
   }
   
@@ -34,7 +34,7 @@ trait TCollection {
    * @param int $index
    * @return bool
    */
-  function offsetExists($index): bool {
+  public function offsetExists($index): bool {
     return $index >= 0 AND $index < count($this->items);
   }
   
@@ -42,7 +42,7 @@ trait TCollection {
    * @param int|NULL $index
    * @throws \OutOfRangeException
    */
-  function offsetGet($index) {
+  public function offsetGet($index) {
     if($index < 0 OR $index >= count($this->items)) {
       throw new \OutOfRangeException("Offset invalid or out of range.");
     }
@@ -72,7 +72,7 @@ trait TCollection {
    * @throws \OutOfRangeException
    * @throws \InvalidArgumentException
    */
-  function offsetSet($index, $item): void {
+  public function offsetSet($index, $item): void {
     if(!$item instanceof $this->class) {
       throw new \InvalidArgumentException("Argument must be of $this->class type.");
     } elseif(!$this->checkUniqueness($item)) {
@@ -93,7 +93,7 @@ trait TCollection {
    * @return void
    * @throws \OutOfRangeException
    */
-  function offsetUnset($index): void {
+  public function offsetUnset($index): void {
     if($index < 0 OR $index >= count($this->items)) {
       throw new \OutOfRangeException("Offset invalid or out of range.");
     }

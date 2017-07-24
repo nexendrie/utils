@@ -19,7 +19,7 @@ class Intervals {
    * @param string $text
    * @return string|NULL
    */
-  static function findInterval(string $text): ?string {
+  public static function findInterval(string $text): ?string {
     $found = preg_match_all(static::PATTERN, $text, $result);
     if(!$found) {
       return NULL;
@@ -27,7 +27,7 @@ class Intervals {
     return $result[0][0];
   }
   
-  static function isInInterval(int $number, string $interval): bool {
+  public static function isInInterval(int $number, string $interval): bool {
     if(is_null(static::findInterval($interval)) OR $interval !== static::findInterval($interval)) {
       return false;
     }

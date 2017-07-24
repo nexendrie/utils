@@ -12,7 +12,7 @@ class IntervalsTest extends \Tester\TestCase {
     Assert::same($result, Intervals::findInterval($input));
   }
   
-  function testFindInterval() {
+  public function testFindInterval() {
     $this->tryInterval("abc", NULL);
     $this->tryInterval("abc{0}abc", "{0}");
     $this->tryInterval("abc{-15}abc", "{-15}");
@@ -29,7 +29,7 @@ class IntervalsTest extends \Tester\TestCase {
     $this->tryInterval("]+Inf,-Inf[", NULL);
   }
   
-  function testIsInInterval() {
+  public function testIsInInterval() {
     Assert::true(Intervals::isInInterval(10, "{10}"));
     Assert::true(Intervals::isInInterval(-15, "{-15}"));
     Assert::false(Intervals::isInInterval(10, "abc"));
