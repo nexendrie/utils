@@ -16,23 +16,16 @@ trait TCollection {
   /** @var string|NULL */
   protected $uniqueProperty = NULL;
   
-  /**
-   * @return int
-   */
   public function count(): int {
     return count($this->items);
   }
   
-  /**
-   * @return \ArrayIterator
-   */
   public function getIterator(): \ArrayIterator {
     return new \ArrayIterator($this->items);
   }
   
   /**
    * @param int $index
-   * @return bool
    */
   public function offsetExists($index): bool {
     return $index >= 0 AND $index < count($this->items);
@@ -51,7 +44,6 @@ trait TCollection {
   
   /**
    * @param object $newItem
-   * @return bool
    */
   protected function checkUniqueness($newItem): bool {
     if(is_null($this->uniqueProperty)) {
@@ -68,7 +60,6 @@ trait TCollection {
   /**
    * @param int|NULL $index
    * @param object $item
-   * @return void
    * @throws \OutOfRangeException
    * @throws \InvalidArgumentException
    */
@@ -90,7 +81,6 @@ trait TCollection {
   
   /**
    * @param int $index
-   * @return void
    * @throws \OutOfRangeException
    */
   public function offsetUnset($index): void {

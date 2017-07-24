@@ -15,10 +15,6 @@ class Intervals {
   
   const PATTERN = '/(\{\-?\d+(,\-?\d+)*\})|((?P<start>\[|\])(?P<limit1>\-?\d+|\-Inf),(?P<limit2>\-?\d+|\+Inf)(?P<end>\[|\]))/';
   
-  /**
-   * @param string $text
-   * @return string|NULL
-   */
   public static function findInterval(string $text): ?string {
     $found = preg_match_all(static::PATTERN, $text, $result);
     if(!$found) {
