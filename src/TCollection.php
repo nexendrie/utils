@@ -49,7 +49,7 @@ trait TCollection {
     if(is_null($this->uniqueProperty)) {
       return true;
     }
-    foreach($this as $item) {
+    foreach($this->items as $item) {
       if($newItem->{$this->uniqueProperty} === $item->{$this->uniqueProperty}) {
         return false;
       }
