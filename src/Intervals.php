@@ -16,11 +16,11 @@ class Intervals {
   const PATTERN = '/(\{\-?\d+(,\-?\d+)*\})|((?P<start>\[|\])(?P<limit1>\-?\d+|\-Inf),(?P<limit2>\-?\d+|\+Inf)(?P<end>\[|\]))/';
   
   public static function findInterval(string $text): ?string {
-    $found = preg_match_all(static::PATTERN, $text, $result);
+    $found = preg_match(static::PATTERN, $text, $result);
     if(!$found) {
       return NULL;
     }
-    return $result[0][0];
+    return $result[0];
   }
   
   public static function isInInterval(int $number, string $interval): bool {
@@ -31,11 +31,11 @@ class Intervals {
       $numbers = explode(",", Strings::trim($interval, "{}"));
       return (in_array($number, $numbers));
     }
-    preg_match_all(static::PATTERN, $interval, $matches);
+    preg_match(static::PATTERN, $interval, $matches);
     $start = $matches["start"][0];
     $end = $matches["end"][0];
-    $limit1 = (int) str_replace("-Inf", PHP_INT_MIN, $matches["limit1"][0]);
-    $limit2 = (int) str_replace("+Inf", PHP_INT_MAX, $matches["limit2"][0]);
+    $limit1 = (int) str_replace("-Inf", PHP_INT_MIN, $matches["limit1"]);
+    $limit2 = (int) str_replace("+Inf", PHP_INT_MAX, $matches["limit2"]);
     if($limit1 > $limit2) {
       return false;
     } elseif($number < $limit1) {
