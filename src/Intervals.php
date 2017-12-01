@@ -29,7 +29,10 @@ class Intervals {
     }
     if(Strings::startsWith($interval, "{")) {
       $numbers = explode(",", Strings::trim($interval, "{}"));
-      return (in_array($number, $numbers));
+      array_walk($numbers, function(&$value) {
+        $value = (int) $value;
+      });
+      return (in_array($number, $numbers, true));
     }
     preg_match(static::PATTERN, $interval, $matches);
     $start = $matches["start"][0];
