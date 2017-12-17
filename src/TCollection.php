@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
+use Nette\Utils\Arrays;
+
 /**
  * TCollection
  * Target class has to implement \ArrayAccess, \Countable, \IteratorAggregate interfaces
@@ -56,12 +58,9 @@ trait TCollection {
     if(is_null($this->uniqueProperty)) {
       return true;
     }
-    foreach($this->items as $item) {
-      if($newItem->{$this->uniqueProperty} === $item->{$this->uniqueProperty}) {
-        return false;
-      }
-    }
-    return true;
+    return !Arrays::some($this->items, function($value) use($newItem) {
+      return ($newItem->{$this->uniqueProperty} === $value->{$this->uniqueProperty});
+    });
   }
   
   /**
