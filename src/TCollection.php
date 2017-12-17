@@ -45,6 +45,13 @@ trait TCollection {
   /**
    * @param object $newItem
    */
+  protected function checkType($newItem): bool {
+    return ($newItem instanceof $this->class);
+  }
+  
+  /**
+   * @param object $newItem
+   */
   protected function checkUniqueness($newItem): bool {
     if(is_null($this->uniqueProperty)) {
       return true;
@@ -64,7 +71,7 @@ trait TCollection {
    * @throws \InvalidArgumentException
    */
   public function offsetSet($index, $item): void {
-    if(!$item instanceof $this->class) {
+    if(!$this->checkType($item)) {
       throw new \InvalidArgumentException("Argument must be of $this->class type.");
     } elseif(!$this->checkUniqueness($item)) {
       $property = $this->uniqueProperty;
