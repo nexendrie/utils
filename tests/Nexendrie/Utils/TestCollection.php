@@ -8,7 +8,7 @@ namespace Nexendrie\Utils;
  *
  * @author Jakub Konečný
  */
-class TestCollection extends Collection {
+final class TestCollection extends Collection {
   protected $class = Item::class;
 }
 ?>

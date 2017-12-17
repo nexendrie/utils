@@ -7,7 +7,7 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
-class CollectionTest extends \Tester\TestCase {
+final class CollectionTest extends \Tester\TestCase {
   /** @var Collection */
   protected $col;
   

@@ -8,7 +8,7 @@ namespace Nexendrie\Utils;
  *
  * @author Jakub Konečný
  */
-class UniqueCollection extends Collection {
+final class UniqueCollection extends Collection {
   protected $class = Item::class;
   protected $uniqueProperty = "var1";
 }

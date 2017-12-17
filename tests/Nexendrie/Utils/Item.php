@@ -8,7 +8,7 @@ namespace Nexendrie\Utils;
  *
  * @author Jakub Konečný
  */
-class Item {
+final class Item {
   /** @var string */
   public $var1;
   
