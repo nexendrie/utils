@@ -58,8 +58,8 @@ trait TCollection {
     if(is_null($this->uniqueProperty)) {
       return true;
     }
-    return !Arrays::some($this->items, function($value) use($newItem) {
-      return ($newItem->{$this->uniqueProperty} === $value->{$this->uniqueProperty});
+    return Arrays::every($this->items, function($value) use($newItem) {
+      return ($newItem->{$this->uniqueProperty} !== $value->{$this->uniqueProperty});
     });
   }
   
