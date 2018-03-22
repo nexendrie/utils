@@ -20,6 +20,9 @@ Collection
 This package contains abstract class Nexendrie\Utils\Collection which is a base for collection of objects of specified type. The type is stored in property $class. The collection behaves like an array - you can use count() on it, you can iterate over the items in foreach, you can even add new items as next element of array. Example of usage:
 
 ```php
+<?php
+declare(strict_types=1);
+
 class MyCollection extends Nexendrie\Utils\Collection {
   protected $class = Item::class;
 }
@@ -34,7 +37,7 @@ foreach($collection as $index => $item) {
   }
 }
 count($collection); // 1
-
+?>
 ```
 
 You can even create collection in which all items has to have different values for 1 property. Just set (or overwrite) value for property $uniqueProperty.
@@ -58,5 +61,3 @@ There is class Intervals in this package which makes working with number interva
 [1,+Inf[ any number above 0
 [-Inf,+Inf[ any number
 ```
-
- 
