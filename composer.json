@@ -2,7 +2,7 @@
     "name": "nexendrie/utils",
     "description": "Collection of various utilities for your PHP project",
     "keywords": [
-      "utils", "collections", "intervals"
+      "utils", "collections", "intervals", "constants", "numbers", "range"
     ],
     "license": "BSD-3-Clause",
     "homepage": "https://nexendrie.gitlab.io",
@@ -33,7 +33,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Nexendrie\\Utils\\": "tests/"
+            "Nexendrie\\Utils\\": "tests/Nexendrie/Utils/"
         }
     },
     "config": {
