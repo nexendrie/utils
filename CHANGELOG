@@ -1,6 +1,6 @@
 Version 1.1.0+dev
 - some refactoring/code cleaning
-- added class Constants
+- added classes Constants and Numbers
 
 Version 1.1.0
 - added trait-based version of Collection
