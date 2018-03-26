@@ -18,7 +18,7 @@ class Constants {
    *
    * @throws \ReflectionException
    */
-  public static function getConstantsValues(string $class, string $prefix): array {
+  public static function getConstantsValues(string $class, string $prefix = ""): array {
     $values = [];
     $constants = (new \ReflectionClass($class))->getConstants();
     foreach($constants as $name => $value) {

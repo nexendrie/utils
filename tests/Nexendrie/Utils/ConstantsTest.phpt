@@ -10,6 +10,7 @@ use Tester\Assert;
 final class ConstantsTest extends \Tester\TestCase {
   public const ABC_A = "a";
   public const ABC_B = "b";
+  public const DEF_A = "d";
   
   public function testGetConstantsValues() {
     $result = Constants::getConstantsValues(static::class, "ABC_");
@@ -20,6 +21,9 @@ final class ConstantsTest extends \Tester\TestCase {
     }
     Assert::same("a", $result[0]);
     Assert::same("b", $result[1]);
+    $result = Constants::getConstantsValues(static::class);
+    Assert::type("array", $result);
+    Assert::count(5, $result);
   }
 }
 
