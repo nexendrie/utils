@@ -1,4 +1,4 @@
-Version 1.1.0+dev
+Version 1.2.0
 - some refactoring/code cleaning
 - added classes Constants and Numbers
 - added option to lock collection
