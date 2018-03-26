@@ -74,6 +74,18 @@ final class CollectionTest extends \Tester\TestCase {
       unset($this->col[0]);
     }, \OutOfRangeException::class);
   }
+  
+  public function testLocking() {
+    $this->col[] = new Item("Item 1");
+    $this->col->lock();
+    Assert::true($this->col->isLocked());
+    Assert::exception(function() {
+      $this->col[] = new Item("Item 1");
+    }, \RuntimeException::class);
+    Assert::exception(function() {
+      unset($this->col[0]);
+    }, \RuntimeException::class);
+  }
 }
 
 $test = new CollectionTest;

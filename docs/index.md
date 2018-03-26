@@ -42,6 +42,8 @@ count($collection); // 1
 
 You can even create collection in which all items has to have different values for 1 property. Just set (or overwrite) value for property $uniqueProperty.
 
+It is also possible to lock collection to prevent adding and deleting items. Just use method lock on the collection.
+
 If you cannot (or do not want to) extends that class, you can also use trait Nexendrie\Utils\TCollection in your class. Do not forget to make the class implement \ArrayAccess, \Countable and \IteratorAggregate interfaces.
 
 Intervals

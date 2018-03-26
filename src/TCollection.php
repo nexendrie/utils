@@ -17,6 +17,16 @@ trait TCollection {
   protected $class;
   /** @var string|NULL */
   protected $uniqueProperty = NULL;
+  /** @var bool */
+  protected $locked = false;
+  
+  public function isLocked(): bool {
+    return $this->locked;
+  }
+  
+  public function lock(): void {
+    $this->locked = true;
+  }
   
   public function count(): int {
     return count($this->items);
@@ -71,7 +81,9 @@ trait TCollection {
    * @throws \RuntimeException
    */
   public function offsetSet($index, $item): void {
-    if(!$this->checkType($item)) {
+    if($this->locked) {
+      throw new \RuntimeException("Cannot add items to locked collection.");
+    } elseif(!$this->checkType($item)) {
       throw new \InvalidArgumentException("Argument must be of $this->class type.");
     } elseif(!$this->checkUniqueness($item)) {
       $property = $this->uniqueProperty;
@@ -91,7 +103,9 @@ trait TCollection {
    * @throws \OutOfRangeException
    */
   public function offsetUnset($index): void {
-    if($index < 0 OR $index >= count($this->items)) {
+    if($this->locked) {
+      throw new \RuntimeException("Cannot remove items from locked collection.");
+    } elseif($index < 0 OR $index >= count($this->items)) {
       throw new \OutOfRangeException("Offset invalid or out of range.");
     }
     array_splice($this->items, $index, 1);

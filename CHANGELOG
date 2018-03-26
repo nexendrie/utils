@@ -1,6 +1,7 @@
 Version 1.1.0+dev
 - some refactoring/code cleaning
 - added classes Constants and Numbers
+- added option to lock collection
 
 Version 1.1.0
 - added trait-based version of Collection
