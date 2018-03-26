@@ -68,6 +68,7 @@ trait TCollection {
    * @param object $item
    * @throws \OutOfRangeException
    * @throws \InvalidArgumentException
+   * @throws \RuntimeException
    */
   public function offsetSet($index, $item): void {
     if(!$this->checkType($item)) {
