@@ -85,3 +85,20 @@ count(Constants::getConstantsValues(Abcd::class)); //3
 count(Constants::getConstantsValues(Abcd::class, "A")); //2
 ?>
 ```
+
+Numbers
+-------
+
+Class Nexendrie\Utils\Numbers has method range that can be used to ensure that a number is between certain values. It takes the number, minimum and maximum as parameters. Examples:
+
+```php
+<?php
+declare(strict_types=1);
+
+use Nexendrie\Utils\Numbers;
+
+Numbers::range(-10, 0, 50); //0
+Numbers::range(100, 0, 50); //50
+Numbers::range(25, 0, 50); //25
+?>
+```
