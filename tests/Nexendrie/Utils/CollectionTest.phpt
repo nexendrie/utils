@@ -42,7 +42,7 @@ final class CollectionTest extends \Tester\TestCase {
     $item = $this->col[0];
     Assert::type(Item::class, $item);
     Assert::exception(function() {
-      $item = $this->col[1];
+      $this->col[1];
     }, \OutOfRangeException::class);
   }
   
