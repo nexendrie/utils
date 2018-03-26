@@ -61,3 +61,25 @@ There is class Intervals in this package which makes working with number interva
 [1,+Inf[ any number above 0
 [-Inf,+Inf[ any number
 ```
+
+Class constants
+---------------
+
+If you need to get values of constants from certain class (e. g. for validating values), you can use method Nexendrie\Utils\Constants::getConstantsValues. It takes class name as first parameter, in second parameter you can specify string which all constant names should start with. Examples:
+
+```php
+<?php
+declare(strict_types=1);
+
+use Nexendrie\Utils\Constants;
+
+class Abcd {
+  public const ABC = "abc";
+  protected const DEF = "def";
+  private const AMV = "amv";
+}
+
+count(Constants::getConstantsValues(Abcd::class)); //3
+count(Constants::getConstantsValues(Abcd::class, "A")); //2
+?>
+```
