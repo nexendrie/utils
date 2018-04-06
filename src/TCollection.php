@@ -21,6 +21,8 @@ trait TCollection {
   protected $maxSize = 0;
   /** @var bool */
   protected $locked = false;
+  /** @var callable[] */
+  protected $checkers = [];
   
   public function isLocked(): bool {
     return $this->locked;
@@ -54,6 +56,10 @@ trait TCollection {
       throw new \OutOfRangeException("Offset invalid or out of range.");
     }
     return $this->items[$index];
+  }
+  
+  public function addChecker(callable $checker): void {
+    $this->checkers[] = $checker;
   }
   
   /**
@@ -95,6 +101,9 @@ trait TCollection {
       throw new \RuntimeException("Duplicate $property {$item->$property}.");
     } elseif(!$this->checkSize()) {
       throw new \RuntimeException("Collection reached its max size. Cannot add more items.");
+    }
+    foreach($this->checkers as $checker) {
+      call_user_func($checker, $item, $this);
     }
   }
   

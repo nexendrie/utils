@@ -59,6 +59,10 @@ class MyCollection extends Nexendrie\Utils\Collection {
 
 If you cannot (or do not want to) extends that class, you can also use trait Nexendrie\Utils\TCollection in your class. Do not forget to make the class implement \ArrayAccess, \Countable and \IteratorAggregate interfaces.
 
+### Custom checks
+
+You can add additional validation rules for items in form of callbacks. Just add new array item to property $checks or use method addChecker. The callback gets new item as first parameter and the collection as second, if it does not throw any exception, item is added to the collection.
+
 Intervals
 ---------
 
