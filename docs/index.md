@@ -44,6 +44,19 @@ You can even create collection in which all items has to have different values f
 
 It is also possible to lock collection to prevent adding and deleting items. Just use method lock on the collection.
 
+If you need to set a limit of number of items in the collection, just set value for property $maxSize:
+
+```php
+<?php
+declare(strict_types=1);
+
+class MyCollection extends Nexendrie\Utils\Collection {
+  protected $class = Item::class;
+  protected $maxSize = 5;
+}
+?>
+```
+
 If you cannot (or do not want to) extends that class, you can also use trait Nexendrie\Utils\TCollection in your class. Do not forget to make the class implement \ArrayAccess, \Countable and \IteratorAggregate interfaces.
 
 Intervals

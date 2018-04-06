@@ -17,6 +17,8 @@ trait TCollection {
   protected $class;
   /** @var string|NULL */
   protected $uniqueProperty = NULL;
+  /** @var int */
+  protected $maxSize = 0;
   /** @var bool */
   protected $locked = false;
   
@@ -73,6 +75,13 @@ trait TCollection {
     });
   }
   
+  protected function checkSize(): bool {
+    if($this->maxSize < 1) {
+      return true;
+    }
+    return ($this->count() + 1 <= $this->maxSize);
+  }
+  
   /**
    * @param int|NULL $index
    * @param object $item
@@ -88,6 +97,8 @@ trait TCollection {
     } elseif(!$this->checkUniqueness($item)) {
       $property = $this->uniqueProperty;
       throw new \RuntimeException("Duplicate $property {$item->$property}.");
+    } elseif(!$this->checkSize()) {
+      throw new \RuntimeException("Collection reached its max size. Cannot add more items.");
     }
     if($index === NULL) {
       $this->items[] = & $item;

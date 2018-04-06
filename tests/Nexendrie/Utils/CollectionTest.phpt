@@ -86,6 +86,14 @@ final class CollectionTest extends \Tester\TestCase {
       unset($this->col[0]);
     }, \RuntimeException::class);
   }
+  
+  public function testMaxSize() {
+    $col = new MaxSizedCollection();
+    $col[] = new Item("Item 1");
+    Assert::exception(function() use($col) {
+      $col[] = new Item("Item 1");
+    }, \RuntimeException::class, "Collection reached its max size. Cannot add more items.");
+  }
 }
 
 $test = new CollectionTest;
