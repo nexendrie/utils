@@ -1,6 +1,7 @@
 Version 1.3.0-dev
 - collections can have max size
 - added support for custom checkers to collection
+- added method (T)Collection::toArray()
 
 Version 1.2.0
 - some refactoring/code cleaning

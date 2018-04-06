@@ -137,5 +137,9 @@ trait TCollection {
     }
     array_splice($this->items, $index, 1);
   }
+  
+  public function toArray(): array {
+    return $this->items;
+  }
 }
 ?>

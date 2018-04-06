@@ -107,6 +107,14 @@ final class CollectionTest extends \Tester\TestCase {
       $col[] = new Item("Item 2");
     }, \RuntimeException::class, "");
   }
+  
+  public function testToArray() {
+    $this->col[] = new Item("Item 1");
+    $this->col[] = new Item("Item 2");
+    $array = $this->col->toArray();
+    Assert::type("array", $array);
+    Assert::count(2, $array);
+  }
 }
 
 $test = new CollectionTest;
