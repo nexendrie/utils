@@ -83,13 +83,9 @@ trait TCollection {
   }
   
   /**
-   * @param int|NULL $index
    * @param object $item
-   * @throws \OutOfRangeException
-   * @throws \InvalidArgumentException
-   * @throws \RuntimeException
    */
-  public function offsetSet($index, $item): void {
+  protected function performChecks($item): void {
     if($this->locked) {
       throw new \RuntimeException("Cannot add items to locked collection.");
     } elseif(!$this->checkType($item)) {
@@ -100,6 +96,17 @@ trait TCollection {
     } elseif(!$this->checkSize()) {
       throw new \RuntimeException("Collection reached its max size. Cannot add more items.");
     }
+  }
+  
+  /**
+   * @param int|NULL $index
+   * @param object $item
+   * @throws \OutOfRangeException
+   * @throws \InvalidArgumentException
+   * @throws \RuntimeException
+   */
+  public function offsetSet($index, $item): void {
+    $this->performChecks($item);
     if($index === NULL) {
       $this->items[] = & $item;
     } elseif($index < 0 OR $index >= count($this->items)) {
