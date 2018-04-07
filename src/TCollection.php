@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-use Nette\Utils\Arrays;
-
 /**
  * TCollection
  * Target class has to implement \ArrayAccess, \Countable, \IteratorAggregate interfaces
@@ -23,6 +21,13 @@ trait TCollection {
   protected $locked = false;
   /** @var callable[] */
   protected $checkers = [];
+  
+  public function __construct() {
+    $this->addChecker([$this, "checkLock"]);
+    $this->addChecker([$this, "checkType"]);
+    $this->addChecker([$this, "checkUniqueness"]);
+    $this->addChecker([$this, "checkSize"]);
+  }
   
   public function isLocked(): bool {
     return $this->locked;
@@ -65,43 +70,52 @@ trait TCollection {
   /**
    * @param object $newItem
    */
-  protected function checkType($newItem): bool {
-    return ($newItem instanceof $this->class);
+  protected function checkLock($newItem, self $collection): void {
+    if($collection->locked) {
+      throw new \RuntimeException("Cannot add items to locked collection.");
+    }
   }
   
   /**
    * @param object $newItem
    */
-  protected function checkUniqueness($newItem): bool {
-    if(is_null($this->uniqueProperty)) {
-      return true;
+  protected function checkType($newItem, self $collection): void {
+    if(!$newItem instanceof $collection->class) {
+      throw new \InvalidArgumentException("Argument must be of $this->class type.");
     }
-    return Arrays::every($this->items, function($value) use($newItem) {
-      return ($newItem->{$this->uniqueProperty} !== $value->{$this->uniqueProperty});
-    });
   }
   
-  protected function checkSize(): bool {
-    if($this->maxSize < 1) {
-      return true;
+  /**
+   * @param object $newItem
+   */
+  protected function checkUniqueness($newItem, self $collection): void {
+    $uniqueProperty = $collection->uniqueProperty;
+    if(is_null($uniqueProperty)) {
+      return;
     }
-    return ($this->count() + 1 <= $this->maxSize);
+    foreach($collection->items as $item) {
+      if($newItem->$uniqueProperty === $item->$uniqueProperty) {
+        throw new \RuntimeException("Duplicate $uniqueProperty {$item->$uniqueProperty}.");
+      }
+    }
+  }
+  
+  /**
+   * @param object $newItem
+   */
+  protected function checkSize($newItem, self $collection): void {
+    if($collection->maxSize < 1) {
+      return;
+    }
+    if($collection->count() + 1 > $collection->maxSize) {
+      throw new \RuntimeException("Collection reached its max size. Cannot add more items.");
+    }
   }
   
   /**
    * @param object $item
    */
   protected function performChecks($item): void {
-    if($this->locked) {
-      throw new \RuntimeException("Cannot add items to locked collection.");
-    } elseif(!$this->checkType($item)) {
-      throw new \InvalidArgumentException("Argument must be of $this->class type.");
-    } elseif(!$this->checkUniqueness($item)) {
-      $property = $this->uniqueProperty;
-      throw new \RuntimeException("Duplicate $property {$item->$property}.");
-    } elseif(!$this->checkSize()) {
-      throw new \RuntimeException("Collection reached its max size. Cannot add more items.");
-    }
     foreach($this->checkers as $checker) {
       call_user_func($checker, $item, $this);
     }
