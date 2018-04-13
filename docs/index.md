@@ -65,7 +65,7 @@ You can add additional validation rules for items in form of callbacks. Just add
 
 ### Filtering
 
-It is possible to find out if the collection has at least 1 item meeting specific criteria/get array containing that items via methods hasItems/getItems. Both of them accepts array as argument in form property => value; if it contains multiple conditions, all of them have to be met.
+It is possible to find out if the collection has at least 1 item meeting specific criteria/get array containing that items via methods hasItems/getItems. Both of them accepts array as argument in form property => value; if it contains multiple conditions, all of them have to be met. The property name can be followed by an operator from the following list: ==, >=, >, <=, <, !=, default is ==.
 
 Intervals
 ---------
