@@ -141,9 +141,11 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::count(0, $this->col->getItems());
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
-    Assert::count(2, $this->col->getItems());
+    $this->col[] = new Item("Item 3");
+    Assert::count(3, $this->col->getItems());
     Assert::count(1, $this->col->getItems(["var1" => "Item 1"]));
-    Assert::count(0, $this->col->getItems(["var1" => "Item 3"]));
+    Assert::count(0, $this->col->getItems(["var1" => "Item 4"]));
+    Assert::count(2, $this->col->getItems(["var1<" => "Item 3"]));
   }
 }
 

@@ -176,21 +176,9 @@ trait TCollection {
   
   /**
    * Get all items matching the filter
-   *
-   * @todo make it possible to use different comparing rules
    */
   public function getItems(array $filter = []): array {
-    if(count($filter) === 0) {
-      return $this->items;
-    }
-    return array_values(array_filter($this->items, function($item) use($filter) {
-      foreach($filter as $key => $value) {
-        if($item->$key !== $value) {
-          return false;
-        }
-      }
-      return true;
-    }));
+    return Filter::applyFilter($this->items, $filter);
   }
 }
 ?>
