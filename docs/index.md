@@ -63,6 +63,10 @@ If you cannot (or do not want to) extends that class, you can also use trait Nex
 
 You can add additional validation rules for items in form of callbacks. Just add new array item to property $checks or use method addChecker. The callback gets new item as first parameter and the collection as second, if it does not throw any exception, item is added to the collection.
 
+### Filtering
+
+It is possible to find out if the collection has at least 1 item meeting specific criteria/get array containing that items via methods hasItems/getItems. Both of them accepts array as argument in form property => value; if it contains multiple conditions, all of them have to be met.
+
 Intervals
 ---------
 

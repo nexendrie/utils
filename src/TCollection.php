@@ -155,5 +155,31 @@ trait TCollection {
   public function toArray(): array {
     return $this->items;
   }
+  
+  /**
+   * Check if the collection has at least 1 item matching the filter
+   */
+  public function hasItems(array $filter = []): bool {
+    return (count($this->getItems($filter)) > 0);
+  }
+  
+  /**
+   * Get all items matching the filter
+   *
+   * @todo make it possible to use different comparing rules
+   */
+  public function getItems(array $filter = []): array {
+    if(count($filter) === 0) {
+      return $this->items;
+    }
+    return array_values(array_filter($this->items, function($item) use($filter) {
+      foreach($filter as $key => $value) {
+        if($item->$key !== $value) {
+          return false;
+        }
+      }
+      return true;
+    }));
+  }
 }
 ?>

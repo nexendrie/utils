@@ -115,6 +115,23 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::type("array", $array);
     Assert::count(2, $array);
   }
+  
+  public function testHasItems() {
+    $this->col[] = new Item("Item 1");
+    $this->col[] = new Item("Item 2");
+    Assert::true($this->col->hasItems());
+    Assert::true($this->col->hasItems(["var1" => "Item 1"]));
+    Assert::false($this->col->hasItems(["var1" => "Item 3"]));
+  }
+  
+  public function testGetItems() {
+    Assert::count(0, $this->col->getItems());
+    $this->col[] = new Item("Item 1");
+    $this->col[] = new Item("Item 2");
+    Assert::count(2, $this->col->getItems());
+    Assert::count(1, $this->col->getItems(["var1" => "Item 1"]));
+    Assert::count(0, $this->col->getItems(["var1" => "Item 3"]));
+  }
 }
 
 $test = new CollectionTest;
