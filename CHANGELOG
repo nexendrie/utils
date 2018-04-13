@@ -1,5 +1,6 @@
 Version 1.3.0+dev
 - added methods hasItems/getItems and fromArray to (T)Collection
+- added method Numbers::isInRange()
 
 Version 1.3.0
 - collections can have max size

@@ -123,3 +123,19 @@ Numbers::range(100, 0, 50); //50
 Numbers::range(25, 0, 50); //25
 ?>
 ```
+
+If you just want to know whether a number is between certain values, use method isInRange(). Examples:
+
+```php
+<?php
+declare(strict_types=1);
+
+use Nexendrie\Utils\Numbers;
+
+Numbers::isInRange(0, 0, 5); //true
+Numbers::isInRange(3, 0, 5); //true
+Numbers::isInRange(5, 0, 5); //true
+Numbers::isInRange(-1, 0, 5); //false
+Numbers::isInRange(6, 0, 5); //false
+?>
+```
