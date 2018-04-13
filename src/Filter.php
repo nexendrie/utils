@@ -14,7 +14,7 @@ use Nette\Utils\Strings;
 final class Filter {
   use \Nette\StaticClass;
   
-  public const OPERATORS = ["==", ">=", ">", "<=", "<",];
+  public const OPERATORS = ["==", ">=", ">", "<=", "<", "!=",];
   
   public static function getOperator(string $input): string {
     foreach(static::OPERATORS as $operator) {

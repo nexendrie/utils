@@ -20,10 +20,13 @@ final class FilterTest extends \Tester\TestCase {
     $items = [
       new Item("1"), new Item("2"), new Item("3"),
     ];
-    $filter = ["var1<=" => 2];
-    $result = Filter::applyFilter($items, $filter);
-    Assert::type("array", $result);
-    Assert::count(2, $result);
+    Assert::count(1, Filter::applyFilter($items, ["var1" => 1]));
+    Assert::count(1, Filter::applyFilter($items, ["var1==" => 1]));
+    Assert::count(3, Filter::applyFilter($items, ["var1>=" => 1]));
+    Assert::count(2, Filter::applyFilter($items, ["var1>" => 1]));
+    Assert::count(2, Filter::applyFilter($items, ["var1<=" => 2]));
+    Assert::count(1, Filter::applyFilter($items, ["var1<" => 2]));
+    Assert::count(2, Filter::applyFilter($items, ["var1!=" => 3]));
   }
 }
 
