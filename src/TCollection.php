@@ -157,6 +157,17 @@ trait TCollection {
   }
   
   /**
+   * Create new collection from array
+   */
+  public static function fromArray(array $items, ...$args): self {
+    $collection = new static(...$args);
+    foreach($items as $item) {
+      $collection[] = $item;
+    }
+    return $collection;
+  }
+  
+  /**
    * Check if the collection has at least 1 item matching the filter
    */
   public function hasItems(array $filter = []): bool {

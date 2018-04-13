@@ -116,6 +116,19 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::count(2, $array);
   }
   
+  public function testFromArray() {
+    $items = [
+      new Item("Item 1"), new Item("Item 2"),
+    ];
+    $collection = TestCollection::fromArray($items);
+    Assert::type(TestCollection::class, $collection);
+    Assert::count(2, $collection);
+    $collection = ParameterCollection::fromArray($items, "abc");
+    Assert::type(ParameterCollection::class, $collection);
+    Assert::count(2, $collection);
+    Assert::same("abc", $collection->name);
+  }
+  
   public function testHasItems() {
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
