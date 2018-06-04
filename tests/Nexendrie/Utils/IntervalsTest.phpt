@@ -13,20 +13,20 @@ final class IntervalsTest extends \Tester\TestCase {
   }
   
   public function testFindInterval() {
-    $this->tryInterval("abc", NULL);
+    $this->tryInterval("abc", null);
     $this->tryInterval("abc{0}abc", "{0}");
     $this->tryInterval("abc{-15}abc", "{-15}");
     $this->tryInterval("abc{0,11,2}abc", "{0,11,2}");
     $this->tryInterval("abc{0,11,2,-15}abc", "{0,11,2,-15}");
-    $this->tryInterval("abc[0]abc", NULL);
-    $this->tryInterval("abc[0,1,0]abc", NULL);
+    $this->tryInterval("abc[0]abc", null);
+    $this->tryInterval("abc[0,1,0]abc", null);
     $this->tryInterval("abc[0,1]abc", "[0,1]");
     $this->tryInterval("abc]0,1]abc", "]0,1]");
     $this->tryInterval("abc[0,1[abc", "[0,1[");
     $this->tryInterval("abc]0,1[abc", "]0,1[");
     $this->tryInterval("abc]-15,-10[abc", "]-15,-10[");
     $this->tryInterval("abc]-Inf,+Inf[abc", "]-Inf,+Inf[");
-    $this->tryInterval("]+Inf,-Inf[", NULL);
+    $this->tryInterval("]+Inf,-Inf[", null);
   }
   
   public function testIsInInterval() {

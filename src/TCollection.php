@@ -14,7 +14,7 @@ trait TCollection {
   /** @var string Type of items in the collection */
   protected $class;
   /** @var string|NULL */
-  protected $uniqueProperty = NULL;
+  protected $uniqueProperty = null;
   /** @var int */
   protected $maxSize = 0;
   /** @var bool */
@@ -130,7 +130,7 @@ trait TCollection {
    */
   public function offsetSet($index, $item): void {
     $this->performChecks($item);
-    if($index === NULL) {
+    if($index === null) {
       $this->items[] = & $item;
     } elseif($index < 0 OR $index >= count($this->items)) {
       throw new \OutOfRangeException("Offset invalid or out of range.");

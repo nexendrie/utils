@@ -18,7 +18,7 @@ class Intervals {
   public static function findInterval(string $text): ?string {
     $found = preg_match(static::PATTERN, $text, $result);
     if(!$found) {
-      return NULL;
+      return null;
     }
     return $result[0];
   }
