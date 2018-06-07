@@ -12,7 +12,7 @@ final class CollectionTest extends \Tester\TestCase {
   protected $col;
   
   public function setUp(): void {
-    $this->col = new TestCollection;
+    $this->col = new TestCollection();
   }
   
   public function testCount(): void {
@@ -51,7 +51,7 @@ final class CollectionTest extends \Tester\TestCase {
     $this->col[0] = new Item("Item 2");
     Assert::same("Item 2", $this->col[0]->var1);
     Assert::exception(function() {
-      $this->col[] = new \stdClass;
+      $this->col[] = new \stdClass();
     }, \InvalidArgumentException::class);
     Assert::exception(function() {
       $this->col[-1] = new Item("Item 1");
@@ -59,7 +59,7 @@ final class CollectionTest extends \Tester\TestCase {
   }
   
   public function testUniqueness() {
-    $col = new UniqueCollection;
+    $col = new UniqueCollection();
     $col[] = new Item("Item 1");
     Assert::exception(function() use($col) {
       $col[] = new Item("Item 1");
@@ -149,6 +149,6 @@ final class CollectionTest extends \Tester\TestCase {
   }
 }
 
-$test = new CollectionTest;
+$test = new CollectionTest();
 $test->run();
 ?>

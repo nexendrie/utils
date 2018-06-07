@@ -54,6 +54,6 @@ final class IntervalsTest extends \Tester\TestCase {
   }
 }
 
-$test = new IntervalsTest;
+$test = new IntervalsTest();
 $test->run();
 ?>
