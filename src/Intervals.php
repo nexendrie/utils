@@ -37,8 +37,8 @@ class Intervals {
     preg_match(static::PATTERN, $interval, $matches);
     $start = $matches["start"][0];
     $end = $matches["end"][0];
-    $limit1 = (int) str_replace("-Inf", PHP_INT_MIN, $matches["limit1"]);
-    $limit2 = (int) str_replace("+Inf", PHP_INT_MAX, $matches["limit2"]);
+    $limit1 = (int) str_replace("-Inf", (string) PHP_INT_MIN, $matches["limit1"]);
+    $limit2 = (int) str_replace("+Inf", (string) PHP_INT_MAX, $matches["limit2"]);
     if($limit1 > $limit2) {
       return false;
     } elseif($number < $limit1) {

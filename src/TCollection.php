@@ -10,6 +10,7 @@ namespace Nexendrie\Utils;
  * @author Jakub Konečný
  */
 trait TCollection {
+  /** @var object[] */
   protected $items = [];
   /** @var string Type of items in the collection */
   protected $class;
@@ -54,6 +55,7 @@ trait TCollection {
   
   /**
    * @param int|NULL $index
+   * @return object
    * @throws \OutOfRangeException
    */
   public function offsetGet($index) {
@@ -158,6 +160,8 @@ trait TCollection {
   
   /**
    * Create new collection from array
+   *
+   * @param mixed $args
    */
   public static function fromArray(array $items, ...$args): self {
     $collection = new static(...$args);

@@ -9,6 +9,7 @@ namespace Nexendrie\Utils;
  * @author Jakub Konečný
  */
 final class ParameterCollection extends Collection {
+  /** @var string */
   protected $class = Item::class;
   /** @var string */
   public $name = "";
