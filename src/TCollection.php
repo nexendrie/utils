@@ -160,8 +160,6 @@ trait TCollection {
   
   /**
    * Create new collection from array
-   *
-   * @param mixed $args
    */
   public static function fromArray(array $items, ...$args): self {
     $collection = new static(...$args);
