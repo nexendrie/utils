@@ -40,7 +40,7 @@ count($collection); // 1
 ?>
 ```
 
-You can even create collection in which all items has to have different values for 1 property. Just set (or overwrite) value for property $uniqueProperty.
+You can even create collection in which all items have to have different values for 1 property. Just set (or overwrite) value for property $uniqueProperty.
 
 It is also possible to lock collection to prevent adding and deleting items. Just use method lock on the collection.
 
@@ -57,7 +57,7 @@ class MyCollection extends Nexendrie\Utils\Collection {
 ?>
 ```
 
-If you cannot (or do not want to) extends that class, you can also use trait Nexendrie\Utils\TCollection in your class. Do not forget to make the class implement \ArrayAccess, \Countable and \IteratorAggregate interfaces.
+If you cannot (or do not want to) extend that class, you can also use trait Nexendrie\Utils\TCollection in your class. Do not forget to make the class implement \ArrayAccess, \Countable and \IteratorAggregate interfaces.
 
 ### Custom checks
 
@@ -65,12 +65,12 @@ You can add additional validation rules for items in form of callbacks. Just add
 
 ### Filtering
 
-It is possible to find out if the collection has at least 1 item meeting specific criteria/get array containing that items via methods hasItems/getItems. Both of them accepts array as argument in form property => value; if it contains multiple conditions, all of them have to be met. The property name can be followed by an operator from the following list: ==, >=, >, <=, <, !=, default is ==.
+It is possible to find out if the collection has at least 1 item meeting specific criteria/get array containing that items via methods hasItems/getItems. Both of them accept array as argument in form property => value; if it contains multiple conditions, all of them have to be met. The property name can be followed by an operator from the following list: ==, >=, >, <=, <, !=, default is ==.
 
 Intervals
 ---------
 
-There is class Intervals in this package which makes working with number intervals in PHP a piece of cake. It first method findInterval returns interval from input string or NULL if no valid interval was found. The second method isInInterval tells you whether an integer (first argument) is in specified interval (second parameter).
+There is class Intervals in this package which makes working with number intervals in PHP a piece of cake. Its first method findInterval returns interval from input string or NULL if no valid interval was found. The second method isInInterval tells you whether an integer (first argument) is in specified interval (second parameter).
 
 ### Supported formats for interval
 
