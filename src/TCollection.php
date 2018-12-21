@@ -95,10 +95,8 @@ trait TCollection {
     if(is_null($uniqueProperty)) {
       return;
     }
-    foreach($collection->items as $item) {
-      if($newItem->$uniqueProperty === $item->$uniqueProperty) {
-        throw new \RuntimeException("Duplicate $uniqueProperty {$item->$uniqueProperty}.");
-      }
+    if($this->hasItems([$uniqueProperty => $newItem->$uniqueProperty])) {
+      throw new \RuntimeException("Duplicate $uniqueProperty {$newItem->$uniqueProperty}.");
     }
   }
   
