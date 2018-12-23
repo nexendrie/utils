@@ -180,5 +180,18 @@ trait TCollection {
   public function getItems(array $filter = []): array {
     return Filter::applyFilter($this->items, $filter);
   }
+
+  /**
+   * Get first item matching the filter
+   *
+   * @return object|null
+   */
+  public function getItem(array $filter) {
+    $items = $this->getItems($filter);
+    if(count($items) === 0) {
+      return null;
+    }
+    return $items[0];
+  }
 }
 ?>

@@ -147,6 +147,17 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::count(0, $this->col->getItems(["var1" => "Item 4"]));
     Assert::count(2, $this->col->getItems(["var1<" => "Item 3"]));
   }
+
+  public function testGetItem() {
+    $this->col[] = new Item("Item 1");
+    $this->col[] = new Item("Item 2");
+    $this->col[] = new Item("Item 3");
+    $this->col[] = new Item("Item 3");
+    Assert::null($this->col->getItem(["var1" => "Item 4"]));
+    Assert::same($this->col[0], $this->col->getItem(["var1" => "Item 1"]));
+    Assert::same($this->col[2], $this->col->getItem(["var1" => "Item 3"]));
+    Assert::notSame($this->col[3], $this->col->getItem(["var1" => "Item 3"]));
+  }
 }
 
 $test = new CollectionTest();

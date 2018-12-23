@@ -1,3 +1,6 @@
+Version 1.5.0-dev
+- added method getItem to (T)Collection
+
 Version 1.4.0
 - added methods hasItems/getItems and fromArray to (T)Collection
 - added method Numbers::isInRange()
