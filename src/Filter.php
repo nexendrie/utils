@@ -29,7 +29,7 @@ final class Filter {
     if(count($filter) === 0) {
       return $input;
     }
-    return array_values(array_filter($input, function($item) use($filter) {
+    return array_values(array_filter($input, function(object $item) use($filter) {
       /** @var string $key */
       foreach($filter as $key => $value) {
         $operator = static::getOperator($key);

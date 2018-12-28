@@ -68,29 +68,20 @@ trait TCollection {
   public function addChecker(callable $checker): void {
     $this->checkers[] = $checker;
   }
-  
-  /**
-   * @param object $newItem
-   */
-  protected function checkLock($newItem, self $collection): void {
+
+  protected function checkLock(object $newItem, self $collection): void {
     if($collection->locked) {
       throw new \RuntimeException("Cannot add items to locked collection.");
     }
   }
-  
-  /**
-   * @param object $newItem
-   */
-  protected function checkType($newItem, self $collection): void {
+
+  protected function checkType(object $newItem, self $collection): void {
     if(!$newItem instanceof $collection->class) {
       throw new \InvalidArgumentException("Argument must be of $this->class type.");
     }
   }
-  
-  /**
-   * @param object $newItem
-   */
-  protected function checkUniqueness($newItem, self $collection): void {
+
+  protected function checkUniqueness(object $newItem, self $collection): void {
     $uniqueProperty = $collection->uniqueProperty;
     if(is_null($uniqueProperty)) {
       return;
@@ -99,11 +90,8 @@ trait TCollection {
       throw new \RuntimeException("Duplicate $uniqueProperty {$newItem->$uniqueProperty}.");
     }
   }
-  
-  /**
-   * @param object $newItem
-   */
-  protected function checkSize($newItem, self $collection): void {
+
+  protected function checkSize(object $newItem, self $collection): void {
     if($collection->maxSize < 1) {
       return;
     }
@@ -111,11 +99,8 @@ trait TCollection {
       throw new \RuntimeException("Collection reached its max size. Cannot add more items.");
     }
   }
-  
-  /**
-   * @param object $item
-   */
-  protected function performChecks($item): void {
+
+  protected function performChecks(object $item): void {
     foreach($this->checkers as $checker) {
       call_user_func($checker, $item, $this);
     }
@@ -183,10 +168,8 @@ trait TCollection {
 
   /**
    * Get first item matching the filter
-   *
-   * @return object|null
    */
-  public function getItem(array $filter) {
+  public function getItem(array $filter): ?object {
     $items = $this->getItems($filter);
     if(count($items) === 0) {
       return null;
