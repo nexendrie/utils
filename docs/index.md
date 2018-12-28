@@ -23,6 +23,10 @@ This package contains abstract class Nexendrie\Utils\Collection which is a base 
 <?php
 declare(strict_types=1);
 
+class Item {
+  
+}
+
 class MyCollection extends Nexendrie\Utils\Collection {
   protected $class = Item::class;
 }
@@ -49,6 +53,10 @@ If you need to set a limit of number of items in the collection, just set value 
 ```php
 <?php
 declare(strict_types=1);
+
+class Item {
+  
+}
 
 class MyCollection extends Nexendrie\Utils\Collection {
   protected $class = Item::class;
