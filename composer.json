@@ -19,7 +19,7 @@
         "docs": "https://nexendrie.gitlab.io/utils"
     },
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.2.0",
         "nette/utils": "^2.4"
     },
     "require-dev": {
