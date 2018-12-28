@@ -22,6 +22,8 @@ final class FilterTest extends \Tester\TestCase {
     ];
     Assert::true(Filter::matches($items[0], ["var<=" => 1]));
     Assert::false(Filter::matches($items[1], ["var<=" => 1]));
+    Assert::true(Filter::matches($items[0], ["%class%" => \stdClass::class]));
+    Assert::false(Filter::matches($items[0], ["%class%!=" => \stdClass::class]));
   }
 
   public function testApplyFilter() {

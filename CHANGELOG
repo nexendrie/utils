@@ -1,6 +1,7 @@
 Version 1.5.0-dev
 - added methods getItem, removeByFilter to (T)Collection
 - raised minimal version of PHP to 7.2
+- allowed to filter by class in collections
 
 Version 1.4.0
 - added methods hasItems/getItems and fromArray to (T)Collection

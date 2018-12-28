@@ -25,12 +25,23 @@ final class Filter {
     return static::OPERATORS[0];
   }
 
+  /**
+   * @param mixed $value
+   */
+  protected static function getCondition(object $item, string $key, string $operator, $value): string {
+    if($key === "%class%") {
+      return "return \"" . get_class($item) . "\" $operator \"$value\";";
+    }
+    return "return \"{$item->$key}\" $operator \"$value\";";
+  }
+
   public static function matches(object $item, array $filter): bool {
     /** @var string $key */
     foreach($filter as $key => $value) {
       $operator = static::getOperator($key);
+      /** @var string $key */
       $key = Strings::endsWith($key, $operator) ? Strings::before($key, $operator) : $key;
-      if(!eval("return \"{$item->$key}\" $operator \"$value\";")) {
+      if(!eval(static::getCondition($item, $key, $operator, $value))) {
         return false;
       }
     }
