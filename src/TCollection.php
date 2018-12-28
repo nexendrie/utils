@@ -126,6 +126,7 @@ trait TCollection {
   
   /**
    * @param int $index
+   * @throws \RuntimeException
    * @throws \OutOfRangeException
    */
   public function offsetUnset($index): void {
@@ -175,6 +176,20 @@ trait TCollection {
       return null;
     }
     return $items[0];
+  }
+
+  /**
+   * Remove all items matching the filter
+   *
+   * @throws \RuntimeException
+   * @throws \OutOfRangeException
+   */
+  public function removeByFilter(array $filter): void {
+    foreach($this->items as $index => $item) {
+      if(Filter::matches($item, $filter)) {
+        $this->offsetUnset($index);
+      }
+    }
   }
 }
 ?>

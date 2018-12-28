@@ -158,6 +158,18 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::same($this->col[2], $this->col->getItem(["var1" => "Item 3"]));
     Assert::notSame($this->col[3], $this->col->getItem(["var1" => "Item 3"]));
   }
+
+  public function testRemoveByFilter() {
+    $this->col[] = new Item("Item 1");
+    $this->col[] = new Item("Item 2");
+    $this->col[] = new Item("Item 3");
+    $this->col->removeByFilter(["var1" => "Item 3"]);
+    Assert::count(2, $this->col);
+    $this->col->lock();
+    Assert::exception(function() {
+      $this->col->removeByFilter(["var1" => "Item 2"]);
+    }, \RuntimeException::class);
+  }
 }
 
 $test = new CollectionTest();
