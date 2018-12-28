@@ -15,7 +15,15 @@ final class FilterTest extends \Tester\TestCase {
       Assert::same($operator, Filter::getOperator($input . $operator));
     }
   }
-  
+
+  public function testMatches() {
+    $items = [
+      (object) ["var" => 1], (object) ["var" => "abc"],
+    ];
+    Assert::true(Filter::matches($items[0], ["var<=" => 1]));
+    Assert::false(Filter::matches($items[1], ["var<=" => 1]));
+  }
+
   public function testApplyFilter() {
     $items = [
       new Item("1"), new Item("2"), new Item("3"),

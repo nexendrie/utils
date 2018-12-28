@@ -24,21 +24,25 @@ final class Filter {
     }
     return static::OPERATORS[0];
   }
-  
+
+  public static function matches(object $item, array $filter): bool {
+    /** @var string $key */
+    foreach($filter as $key => $value) {
+      $operator = static::getOperator($key);
+      $key = Strings::endsWith($key, $operator) ? Strings::before($key, $operator) : $key;
+      if(!eval("return \"{$item->$key}\" $operator \"$value\";")) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   public static function applyFilter(array $input, array $filter = []): array {
     if(count($filter) === 0) {
       return $input;
     }
     return array_values(array_filter($input, function(object $item) use($filter) {
-      /** @var string $key */
-      foreach($filter as $key => $value) {
-        $operator = static::getOperator($key);
-        $key = Strings::endsWith($key, $operator) ? Strings::before($key, $operator) : $key;
-        if(!eval("return \"{$item->$key}\" $operator \"$value\";")) {
-          return false;
-        }
-      }
-      return true;
+      return static::matches($item, $filter);
     }));
   }
 }
