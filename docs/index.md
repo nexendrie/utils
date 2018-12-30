@@ -77,7 +77,7 @@ It is possible to find out if the collection has at least 1 item meeting specifi
 
 If you want to get only the first item matching the filter, use method getItem. If there is no such item, null is returned.
 
-You can also remove all items matching the filter with method removeByFilter.
+You can also remove all items matching the filter with method removeByFilter. If you need index of first item matching the filter, use method getIndex.
 
 Intervals
 ---------

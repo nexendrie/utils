@@ -170,6 +170,14 @@ final class CollectionTest extends \Tester\TestCase {
       $this->col->removeByFilter(["var1" => "Item 2"]);
     }, \RuntimeException::class);
   }
+
+  public function testGetIndex() {
+    $this->col[] = new Item("Item 1");
+    $this->col[] = new Item("Item 2");
+    $this->col[] = new Item("Item 3");
+    Assert::same(0, $this->col->getIndex(["var1" => "Item 1"]));
+    Assert::null($this->col->getIndex(["var1" => "Item"]));
+  }
 }
 
 $test = new CollectionTest();

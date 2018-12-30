@@ -191,5 +191,17 @@ trait TCollection {
       }
     }
   }
+
+  /**
+   * Get index of first item matching the filter
+   */
+  public function getIndex(array $filter): ?int {
+    foreach($this->items as $index => $item) {
+      if(Filter::matches($item, $filter)) {
+        return $index;
+      }
+    }
+    return null;
+  }
 }
 ?>
