@@ -163,11 +163,11 @@ final class CollectionTest extends \Tester\TestCase {
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
     $this->col[] = new Item("Item 3");
-    $this->col->removeByFilter(["var1" => "Item 3"]);
-    Assert::count(2, $this->col);
+    $this->col->removeByFilter(["var1!=" => "Item 1"]);
+    Assert::count(1, $this->col);
     $this->col->lock();
     Assert::exception(function() {
-      $this->col->removeByFilter(["var1" => "Item 2"]);
+      $this->col->removeByFilter(["var1" => "Item 1"]);
     }, \RuntimeException::class);
   }
 

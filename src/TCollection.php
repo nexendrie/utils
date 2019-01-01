@@ -185,8 +185,10 @@ trait TCollection {
    * @throws \OutOfRangeException
    */
   public function removeByFilter(array $filter): void {
-    foreach($this->items as $index => $item) {
+    foreach($this->items as $item) {
       if(Filter::matches($item, $filter)) {
+        /** @var int $index */
+        $index = $this->getIndex($filter);
         $this->offsetUnset($index);
       }
     }
