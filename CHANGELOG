@@ -1,4 +1,4 @@
-Version 1.5.0+dev
+Version 1.5.1
 - fixed (T)Collection::removeByFilter() failing when multiple items match the filter
 
 Version 1.5.0
