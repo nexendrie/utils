@@ -10,7 +10,7 @@ use Nette\Utils\Strings;
  *
  * @author Jakub Konečný
  */
-class Constants {
+final class Constants {
   use \Nette\StaticClass;
   
   /**

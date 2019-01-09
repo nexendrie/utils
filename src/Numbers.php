@@ -8,7 +8,7 @@ namespace Nexendrie\Utils;
  *
  * @author Jakub Konečný
  */
-class Numbers {
+final class Numbers {
   use \Nette\StaticClass;
   
   /**

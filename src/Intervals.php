@@ -10,7 +10,7 @@ use Nette\Utils\Strings;
  *
  * @author Jakub Konečný
  */
-class Intervals {
+final class Intervals {
   use \Nette\StaticClass;
   
   public const PATTERN = '/(\{\-?\d+(,\-?\d+)*\})|((?P<start>\[|\])(?P<limit1>\-?\d+|\-Inf),(?P<limit2>\-?\d+|\+Inf)(?P<end>\[|\]))/';
