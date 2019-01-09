@@ -4,5 +4,4 @@ includes:
 parameters:
     ignoreErrors:
         - '#Only booleans are allowed in a negated boolean, int\|false given#'
-        - '#Call to function in_array\(\) with arguments int, array\<int, string\> and true will always evaluate to false#'
         - '#Method Nexendrie\\Utils\\Collection::fromArray\(\) has parameter \$args with no typehint specified#'

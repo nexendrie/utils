@@ -28,6 +28,7 @@ class Intervals {
       return false;
     }
     if(Strings::startsWith($interval, "{")) {
+      /** @var int[] $numbers */
       $numbers = explode(",", Strings::trim($interval, "{}"));
       array_walk($numbers, function(&$value) {
         $value = (int) $value;
