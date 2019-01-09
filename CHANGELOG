@@ -1,3 +1,6 @@
+Version 1.5.1+dev
+- added optional parameter $count to (T)Collection::hasItems()
+
 Version 1.5.1
 - fixed (T)Collection::removeByFilter() failing when multiple items match the filter
 

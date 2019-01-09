@@ -154,10 +154,10 @@ trait TCollection {
   }
   
   /**
-   * Check if the collection has at least 1 item matching the filter
+   * Check if the collection has at least $count items matching the filter
    */
-  public function hasItems(array $filter = []): bool {
-    return (count($this->getItems($filter)) > 0);
+  public function hasItems(array $filter = [], int $count = 1): bool {
+    return (count($this->getItems($filter)) >= $count);
   }
   
   /**

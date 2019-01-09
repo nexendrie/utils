@@ -135,6 +135,7 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::true($this->col->hasItems());
     Assert::true($this->col->hasItems(["var1" => "Item 1"]));
     Assert::false($this->col->hasItems(["var1" => "Item 3"]));
+    Assert::false($this->col->hasItems(["var1" => "Item 1"], 2));
   }
   
   public function testGetItems() {
