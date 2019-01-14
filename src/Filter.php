@@ -32,6 +32,9 @@ final class Filter {
     if($key === "%class%") {
       return "return \"" . get_class($item) . "\" $operator \"$value\";";
     }
+    if(preg_match("#([a-zA-Z0-9_]+)\(\)\$#", $key, $matches) === 1) {
+      return "return  \"{$item->{$matches[1]}()}\" $operator  \"$value\";";
+    }
     return "return \"{$item->$key}\" $operator \"$value\";";
   }
 

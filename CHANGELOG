@@ -1,6 +1,7 @@
 Version 1.6.0-dev
 - added optional parameter $count to (T)Collection::hasItems()
 - marked classes Constants, Intervals and Numbers as final (possible BC break)
+- allowed to filter by return value of item's method in collections
 
 Version 1.5.1
 - fixed (T)Collection::removeByFilter() failing when multiple items match the filter

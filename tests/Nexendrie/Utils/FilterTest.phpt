@@ -18,12 +18,14 @@ final class FilterTest extends \Tester\TestCase {
 
   public function testMatches() {
     $items = [
-      (object) ["var" => 1], (object) ["var" => "abc"],
+      new Item("1"), new Item("2"),
     ];
-    Assert::true(Filter::matches($items[0], ["var<=" => 1]));
-    Assert::false(Filter::matches($items[1], ["var<=" => 1]));
-    Assert::true(Filter::matches($items[0], ["%class%" => \stdClass::class]));
-    Assert::false(Filter::matches($items[0], ["%class%!=" => \stdClass::class]));
+    Assert::true(Filter::matches($items[0], ["var1<=" => 1]));
+    Assert::false(Filter::matches($items[1], ["var1<=" => 1]));
+    Assert::true(Filter::matches($items[0], ["%class%" => Item::class]));
+    Assert::false(Filter::matches($items[0], ["%class%!=" => Item::class]));
+    Assert::true(Filter::matches($items[0], ["method()" => true]));
+    Assert::false(Filter::matches($items[0], ["method()!=" => true]));
   }
 
   public function testApplyFilter() {

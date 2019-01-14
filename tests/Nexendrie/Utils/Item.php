@@ -15,5 +15,9 @@ final class Item {
   public function __construct(string $var1) {
     $this->var1 = $var1;
   }
+
+  public function method(string $value = "1"): bool {
+    return ($this->var1 === $value);
+  }
 }
 ?>
