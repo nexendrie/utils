@@ -1,4 +1,4 @@
-Version 1.5.1+dev
+Version 1.6.0-dev
 - added optional parameter $count to (T)Collection::hasItems()
 - marked classes Constants, Intervals and Numbers as final (possible BC break)
 
