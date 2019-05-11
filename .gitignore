@@ -2,3 +2,4 @@
 /public/
 /tests/_temp/
 coverage.*
+/composer.lock
