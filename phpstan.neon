@@ -3,7 +3,6 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 parameters:
     ignoreErrors:
-        - '#Only booleans are allowed in a negated boolean, int\|false given#'
         - '#Method Nexendrie\\Utils\\Collection::fromArray\(\) has parameter \$args with no typehint specified#'
         - '#Variable (property access|method call) on object#'
         - '#Parameter \#[0-9] (\$index|\$item) \((int|object|int\|null)\) of method Nexendrie\\Utils\\Collection::offset(Get|Set|Unset|Exists)\(\) should be contravariant with parameter (\$offset|\$value) \(mixed\) of method ArrayAccess::offset(Get|Set|Unset|Exists)\(\)#'
