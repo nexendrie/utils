@@ -102,7 +102,7 @@ trait TCollection {
 
   protected function performChecks(object $item): void {
     foreach($this->checkers as $checker) {
-      call_user_func($checker, $item, $this);
+      $checker($item, $this);
     }
   }
   
