@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "nexendrie/site-generator": "^0.5"
+        "nexendrie/site-generator": "^0.6"
     },
     "autoload": {
         "psr-4": {
