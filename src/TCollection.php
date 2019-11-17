@@ -50,7 +50,7 @@ trait TCollection {
    * @param int $index
    */
   public function offsetExists($index): bool {
-    return $index >= 0 AND $index < count($this->items);
+    return $index >= 0 && $index < count($this->items);
   }
   
   /**
@@ -59,7 +59,7 @@ trait TCollection {
    * @throws \OutOfRangeException
    */
   public function offsetGet($index) {
-    if($index < 0 OR $index >= count($this->items)) {
+    if($index < 0 || $index >= count($this->items)) {
       throw new \OutOfRangeException("Offset invalid or out of range.");
     }
     return $this->items[$index];
@@ -117,7 +117,7 @@ trait TCollection {
     $this->performChecks($item);
     if($index === null) {
       $this->items[] = & $item;
-    } elseif($index < 0 OR $index >= count($this->items)) {
+    } elseif($index < 0 || $index >= count($this->items)) {
       throw new \OutOfRangeException("Offset invalid or out of range.");
     } else {
       $this->items[$index] = & $item;
@@ -132,7 +132,7 @@ trait TCollection {
   public function offsetUnset($index): void {
     if($this->locked) {
       throw new \RuntimeException("Cannot remove items from locked collection.");
-    } elseif($index < 0 OR $index >= count($this->items)) {
+    } elseif($index < 0 || $index >= count($this->items)) {
       throw new \OutOfRangeException("Offset invalid or out of range.");
     }
     array_splice($this->items, $index, 1);

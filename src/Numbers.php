@@ -22,7 +22,7 @@ final class Numbers {
    * Check whether a number is within boundaries
    */
   public static function isInRange(int $number, int $min, int $max): bool {
-    return ($number >= $min AND $number <= $max);
+    return ($number >= $min && $number <= $max);
   }
 }
 ?>

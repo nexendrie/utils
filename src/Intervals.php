@@ -17,14 +17,14 @@ final class Intervals {
   
   public static function findInterval(string $text): ?string {
     preg_match(static::PATTERN, $text, $result);
-    if(!is_array($result) OR count($result) < 1) {
+    if(!is_array($result) || count($result) < 1) {
       return null;
     }
     return $result[0];
   }
   
   public static function isInInterval(int $number, string $interval): bool {
-    if(is_null(static::findInterval($interval)) OR $interval !== static::findInterval($interval)) {
+    if(is_null(static::findInterval($interval)) || $interval !== static::findInterval($interval)) {
       return false;
     }
     if(Strings::startsWith($interval, "{")) {
@@ -46,9 +46,9 @@ final class Intervals {
       return false;
     } elseif($number > $limit2) {
       return false;
-    } elseif($number === $limit1 AND $start === "]") {
+    } elseif($number === $limit1 && $start === "]") {
       return false;
-    } elseif($number === $limit2 AND $end === "[") {
+    } elseif($number === $limit2 && $end === "[") {
       return false;
     }
     return true;
