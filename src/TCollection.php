@@ -83,7 +83,7 @@ trait TCollection {
 
   protected function checkUniqueness(object $newItem, self $collection): void {
     $uniqueProperty = $collection->uniqueProperty;
-    if(is_null($uniqueProperty)) {
+    if($uniqueProperty === null) {
       return;
     }
     if($this->hasItems([$uniqueProperty => $newItem->$uniqueProperty])) {

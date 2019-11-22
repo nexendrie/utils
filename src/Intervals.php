@@ -24,7 +24,7 @@ final class Intervals {
   }
   
   public static function isInInterval(int $number, string $interval): bool {
-    if(is_null(static::findInterval($interval)) || $interval !== static::findInterval($interval)) {
+    if(static::findInterval($interval) === null || $interval !== static::findInterval($interval)) {
       return false;
     }
     if(Strings::startsWith($interval, "{")) {
