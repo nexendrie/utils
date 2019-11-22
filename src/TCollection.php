@@ -70,7 +70,7 @@ trait TCollection {
   }
 
   protected function checkLock(object $newItem, self $collection): void {
-    if($collection->locked) {
+    if($collection->isLocked()) {
       throw new \RuntimeException("Cannot add items to locked collection.");
     }
   }
