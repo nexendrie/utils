@@ -1,3 +1,6 @@
+Version 1.7.0-dev
+- dropped support for Nette 2.4
+
 Version 1.6.1
 - allowed Nette 3
 
