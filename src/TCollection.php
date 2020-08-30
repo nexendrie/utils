@@ -141,9 +141,13 @@ trait TCollection {
   public function toArray(): array {
     return $this->items;
   }
-  
+
   /**
    * Create new collection from array
+   *
+   * @param object[] $items
+   * @param mixed ...$args
+   * @return static
    */
   public static function fromArray(array $items, ...$args): self {
     $collection = new static(...$args);
