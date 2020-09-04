@@ -28,7 +28,7 @@ class Item {
 }
 
 class MyCollection extends Nexendrie\Utils\Collection {
-  protected $class = Item::class;
+  protected string $class = Item::class;
 }
 
 $collection = new MyCollection();
@@ -59,8 +59,8 @@ class Item {
 }
 
 class MyCollection extends Nexendrie\Utils\Collection {
-  protected $class = Item::class;
-  protected $maxSize = 5;
+  protected string $class = Item::class;
+  protected int $maxSize = 5;
 }
 ?>
 ```

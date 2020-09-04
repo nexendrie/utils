@@ -11,17 +11,14 @@ namespace Nexendrie\Utils;
  */
 trait TCollection {
   /** @var object[] */
-  protected $items = [];
+  protected array $items = [];
   /** @var string Type of items in the collection */
-  protected $class;
-  /** @var string|NULL */
-  protected $uniqueProperty = null;
-  /** @var int */
-  protected $maxSize = 0;
-  /** @var bool */
-  protected $locked = false;
+  protected string $class;
+  protected ?string $uniqueProperty = null;
+  protected int $maxSize = 0;
+  protected bool $locked = false;
   /** @var callable[] */
-  protected $checkers = [];
+  protected array $checkers = [];
   
   public function __construct() {
     $this->addDefaultCheckers();

@@ -1,5 +1,6 @@
 Version 1.8.0-dev
 - raised minimal version of PHP to 7.4
+- used typed properties (possible BC break)
 
 Version 1.7.0
 - dropped support for Nette 2.4

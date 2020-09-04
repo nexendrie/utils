@@ -12,8 +12,7 @@ require __DIR__ . "/../../bootstrap.php";
  * @testCase
  */
 final class CollectionTest extends \Tester\TestCase {
-  /** @var Collection */
-  protected $col;
+  protected Collection $col;
   
   public function setUp(): void {
     $this->col = new TestCollection();

@@ -9,8 +9,7 @@ namespace Nexendrie\Utils;
  * @author Jakub Konečný
  */
 final class Item {
-  /** @var string */
-  public $var1;
+  public string $var1;
   
   public function __construct(string $var1) {
     $this->var1 = $var1;

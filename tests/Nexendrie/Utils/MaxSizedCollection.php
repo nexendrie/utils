@@ -9,9 +9,7 @@ namespace Nexendrie\Utils;
  * @author Jakub Konečný
  */
 final class MaxSizedCollection extends Collection {
-  /** @var string */
-  protected $class = Item::class;
-  /** @var int */
-  protected $maxSize = 1;
+  protected string $class = Item::class;
+  protected int $maxSize = 1;
 }
 ?>
