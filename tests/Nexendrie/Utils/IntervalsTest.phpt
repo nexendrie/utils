@@ -7,6 +7,10 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
+/**
+ * @author Jakub Konečný
+ * @testCase
+ */
 final class IntervalsTest extends \Tester\TestCase {
   protected function tryInterval(string $input, ?string $result) {
     Assert::same($result, Intervals::findInterval($input));

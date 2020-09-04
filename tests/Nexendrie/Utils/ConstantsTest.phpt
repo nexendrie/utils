@@ -7,6 +7,10 @@ require __DIR__ . "/../../bootstrap.php";
 
 use Tester\Assert;
 
+/**
+ * @author Jakub Konečný
+ * @testCase
+ */
 final class ConstantsTest extends \Tester\TestCase {
   public const ABC_A = "a";
   public const ABC_B = "b";
