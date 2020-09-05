@@ -24,6 +24,10 @@ trait TCollection {
   protected $checkers = [];
   
   public function __construct() {
+    $this->addDefaultCheckers();
+  }
+
+  protected function addDefaultCheckers(): void {
     $this->addChecker([$this, "checkLock"]);
     $this->addChecker([$this, "checkType"]);
     $this->addChecker([$this, "checkUniqueness"]);
