@@ -2,8 +2,10 @@ includes:
     - vendor/nexendrie/code-quality/phpstan.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 parameters:
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - '#Variable (property access|method call) on object#'
         - '#Parameter \#[0-9] (\$index|\$item) \((int|object|int\|null)\) of method Nexendrie\\Utils\\Collection::offset(Get|Set|Unset|Exists)\(\) should be contravariant with parameter (\$offset|\$value) \(mixed\) of method ArrayAccess\<mixed,mixed\>::offset(Get|Set|Unset|Exists)\(\)#'
-        - '#Parameter \#1 \$argument of class ReflectionClass constructor expects class-string\<T of object\>\|T of object, string given#'
+        - '#Parameter \#1 (\$objectOrClass|\$argument) of class ReflectionClass constructor expects class-string\<T of object\>\|T of object, string given#'
         - '#Unsafe usage of new static\(\)#'
+        - '#Argument of an invalid type array\<string, mixed\>\|null supplied for foreach, only iterables are supported#'
