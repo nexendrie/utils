@@ -1,3 +1,6 @@
+Version 1.8.0+dev
+- fixed compatibility with PHP 8.1
+
 Version 1.8.0
 - raised minimal version of PHP to 7.4
 - used typed properties (possible BC break)
