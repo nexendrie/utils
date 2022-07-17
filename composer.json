@@ -20,11 +20,11 @@
     },
     "require": {
         "php": ">=7.4.0",
-        "nette/utils": "^3.2.2"
+        "nette/utils": "^3.2.7"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "nexendrie/site-generator": "^0.6.1"
+        "nexendrie/site-generator": "^0.7"
     },
     "autoload": {
         "psr-4": {
