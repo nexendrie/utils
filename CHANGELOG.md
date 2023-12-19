@@ -1,3 +1,6 @@
+Version 1.9.0-dev
+- raised minimal version of PHP to 8.1
+
 Version 1.8.1
 - fixed compatibility with PHP 8.1
 
