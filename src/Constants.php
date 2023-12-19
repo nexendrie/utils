@@ -17,7 +17,9 @@ final class Constants {
   /**
    * Get values of all constants from class $class whose name starts with $prefix
    *
+   * @param int[] $visibilities
    * @throws \ReflectionException
+   * @throws \DomainException
    */
   public static function getConstantsValues(string $class, string $prefix = "", array $visibilities = [RCC::IS_PUBLIC, RCC::IS_PROTECTED, RCC::IS_PRIVATE,]): array {
     $allowedVisibilities = [
