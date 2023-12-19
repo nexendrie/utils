@@ -25,9 +25,22 @@ final class ConstantsTest extends \Tester\TestCase {
     }
     Assert::same("a", $result[0]);
     Assert::same("b", $result[1]);
+
     $result = Constants::getConstantsValues(static::class);
     Assert::type("array", $result);
     Assert::count(5, $result);
+
+    $result = Constants::getConstantsValues(class: static::class, visibilities: [\ReflectionClassConstant::IS_PUBLIC]);
+    Assert::type("array", $result);
+    Assert::count(5, $result);
+
+    $result = Constants::getConstantsValues(class: static::class, visibilities: [\ReflectionClassConstant::IS_PROTECTED]);
+    Assert::type("array", $result);
+    Assert::count(0, $result);
+
+    Assert::exception(function () {
+      Constants::getConstantsValues(class: static::class, visibilities: [15]);
+    }, \DomainException::class);
   }
 }
 

@@ -100,7 +100,7 @@ There is class Intervals in this package which makes working with number interva
 Class constants
 ---------------
 
-If you need to get values of constants from certain class (e. g. for validating values), you can use method Nexendrie\Utils\Constants::getConstantsValues. It takes class name as first parameter, in second parameter you can specify string which all constant names should start with. Examples:
+If you need to get values of constants from certain class (e. g. for validating values), you can use method Nexendrie\Utils\Constants::getConstantsValues. It takes class name as first parameter, in second parameter you can specify string which all constant names should start with. It is also possible to select only constants with certain visibility (multiple values are allowed, default is all visibilities), use appropriate constants from class ReflectionClassConstant. Examples:
 
 ```php
 <?php
@@ -116,6 +116,7 @@ class Abcd {
 
 count(Constants::getConstantsValues(Abcd::class)); //3
 count(Constants::getConstantsValues(Abcd::class, "A")); //2
+count(Constants::getConstantsValues(Abcd::class, "A", [ReflectionClassConstant::IS_PRIVATE, ReflectionClassConstant::IS_PROTECTED,])); //1
 ?>
 ```
 
