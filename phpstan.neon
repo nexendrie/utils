@@ -2,7 +2,6 @@ includes:
     - vendor/nexendrie/code-quality/phpstan.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 parameters:
-    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - '#Variable (property access|method call) on object#'
         - '#Parameter \#[0-9] (\$index|\$item) \((int|object|int\|null)\) of method Nexendrie\\Utils\\Collection::offset(Get|Set|Unset|Exists)\(\) should be contravariant with parameter (\$offset|\$value) \(mixed\) of method ArrayAccess\<mixed,mixed\>::offset(Get|Set|Unset|Exists)\(\)#'
