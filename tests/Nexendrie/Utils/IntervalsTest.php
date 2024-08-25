@@ -12,11 +12,11 @@ require __DIR__ . "/../../bootstrap.php";
  * @testCase
  */
 final class IntervalsTest extends \Tester\TestCase {
-  protected function tryInterval(string $input, ?string $result) {
+  protected function tryInterval(string $input, ?string $result): void {
     Assert::same($result, Intervals::findInterval($input));
   }
   
-  public function testFindInterval() {
+  public function testFindInterval(): void {
     $this->tryInterval("abc", null);
     $this->tryInterval("abc{0}abc", "{0}");
     $this->tryInterval("abc{-15}abc", "{-15}");
@@ -33,7 +33,7 @@ final class IntervalsTest extends \Tester\TestCase {
     $this->tryInterval("]+Inf,-Inf[", null);
   }
   
-  public function testIsInInterval() {
+  public function testIsInInterval(): void {
     Assert::true(Intervals::isInInterval(10, "{10}"));
     Assert::true(Intervals::isInInterval(-15, "{-15}"));
     Assert::false(Intervals::isInInterval(10, "abc"));

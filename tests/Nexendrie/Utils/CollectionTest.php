@@ -24,7 +24,7 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::count(1, $this->col);
   }
   
-  public function testGetIterator() {
+  public function testGetIterator(): void {
     for($i = 1; $i <= 5; $i++) {
       $this->col[] = new Item("Item 1");
     }
@@ -34,25 +34,25 @@ final class CollectionTest extends \Tester\TestCase {
     }
   }
   
-  public function testOffsetExists() {
+  public function testOffsetExists(): void {
     Assert::false(isset($this->col[0]));
     $this->col[] = new Item("Item 1");
     Assert::true(isset($this->col[0]));
   }
   
-  public function testOffsetGet() {
+  public function testOffsetGet(): void {
     $this->col[] = new Item("Item 1");
     $item = $this->col[0];
     Assert::type(Item::class, $item);
     Assert::exception(function() {
-      $this->col[1];
+      $item = $this->col[1];
     }, \OutOfRangeException::class);
   }
   
-  public function testOffsetSet() {
+  public function testOffsetSet(): void {
     $this->col[] = new Item("Item 1");
     $this->col[0] = new Item("Item 2");
-    Assert::same("Item 2", $this->col[0]->var1);
+    Assert::same("Item 2", $this->col[0]->var1); // @phpstan-ignore property.notFound
     Assert::exception(function() {
       $this->col[] = new \stdClass();
     }, \InvalidArgumentException::class);
@@ -61,7 +61,7 @@ final class CollectionTest extends \Tester\TestCase {
     }, \OutOfRangeException::class);
   }
   
-  public function testUniqueness() {
+  public function testUniqueness(): void {
     $col = new UniqueCollection();
     $col[] = new Item("Item 1");
     Assert::exception(function() use($col) {
@@ -69,7 +69,7 @@ final class CollectionTest extends \Tester\TestCase {
     }, \RuntimeException::class, "Duplicate var1 Item 1.");
   }
   
-  public function testOffsetUnset() {
+  public function testOffsetUnset(): void {
     $this->col[] = new Item("Item 1");
     unset($this->col[0]);
     Assert::false(isset($this->col[0]));
@@ -78,7 +78,7 @@ final class CollectionTest extends \Tester\TestCase {
     }, \OutOfRangeException::class);
   }
   
-  public function testLocking() {
+  public function testLocking(): void {
     $this->col[] = new Item("Item 1");
     $this->col->lock();
     Assert::true($this->col->isLocked());
@@ -90,7 +90,7 @@ final class CollectionTest extends \Tester\TestCase {
     }, \RuntimeException::class);
   }
   
-  public function testMaxSize() {
+  public function testMaxSize(): void {
     $col = new MaxSizedCollection();
     $col[] = new Item("Item 1");
     Assert::exception(function() use($col) {
@@ -98,7 +98,7 @@ final class CollectionTest extends \Tester\TestCase {
     }, \RuntimeException::class, "Collection reached its max size. Cannot add more items.");
   }
   
-  public function testCheckers() {
+  public function testCheckers(): void {
     $col = new TestCollection();
     $col->addChecker(function(Item $item) {
       if($item->var1 === "Item 2") {
@@ -111,7 +111,7 @@ final class CollectionTest extends \Tester\TestCase {
     }, \RuntimeException::class, "");
   }
   
-  public function testToArray() {
+  public function testToArray(): void {
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
     $array = $this->col->toArray();
@@ -119,7 +119,7 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::count(2, $array);
   }
   
-  public function testFromArray() {
+  public function testFromArray(): void {
     $items = [
       new Item("Item 1"), new Item("Item 2"),
     ];
@@ -132,7 +132,7 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::same("abc", $collection->name);
   }
   
-  public function testHasItems() {
+  public function testHasItems(): void {
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
     Assert::true($this->col->hasItems());
@@ -141,7 +141,7 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::false($this->col->hasItems(["var1" => "Item 1"], 2));
   }
   
-  public function testGetItems() {
+  public function testGetItems(): void {
     Assert::count(0, $this->col->getItems());
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
@@ -152,7 +152,7 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::count(2, $this->col->getItems(["var1<" => "Item 3"]));
   }
 
-  public function testGetItem() {
+  public function testGetItem(): void {
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
     $this->col[] = new Item("Item 3");
@@ -163,7 +163,7 @@ final class CollectionTest extends \Tester\TestCase {
     Assert::notSame($this->col[3], $this->col->getItem(["var1" => "Item 3"]));
   }
 
-  public function testRemoveByFilter() {
+  public function testRemoveByFilter(): void {
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
     $this->col[] = new Item("Item 3");
@@ -175,7 +175,7 @@ final class CollectionTest extends \Tester\TestCase {
     }, \RuntimeException::class);
   }
 
-  public function testGetIndex() {
+  public function testGetIndex(): void {
     $this->col[] = new Item("Item 1");
     $this->col[] = new Item("Item 2");
     $this->col[] = new Item("Item 3");

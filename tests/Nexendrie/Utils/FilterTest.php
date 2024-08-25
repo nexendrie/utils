@@ -12,7 +12,7 @@ use Tester\Assert;
  * @testCase
  */
 final class FilterTest extends \Tester\TestCase {
-  public function testGetOperator() {
+  public function testGetOperator(): void {
     $input = "abc";
     Assert::same("==", Filter::getOperator($input));
     foreach(Filter::OPERATORS as $operator) {
@@ -20,7 +20,7 @@ final class FilterTest extends \Tester\TestCase {
     }
   }
 
-  public function testMatches() {
+  public function testMatches(): void {
     $items = [
       new Item("1"), new Item("2"),
     ];
@@ -32,7 +32,7 @@ final class FilterTest extends \Tester\TestCase {
     Assert::false(Filter::matches($items[0], ["method()!=" => true]));
   }
 
-  public function testApplyFilter() {
+  public function testApplyFilter(): void {
     $items = [
       new Item("1"), new Item("2"), new Item("3"),
     ];

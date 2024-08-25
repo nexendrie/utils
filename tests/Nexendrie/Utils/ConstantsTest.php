@@ -16,7 +16,7 @@ final class ConstantsTest extends \Tester\TestCase {
   public const ABC_B = "b";
   public const DEF_A = "d";
   
-  public function testGetConstantsValues() {
+  public function testGetConstantsValues(): void {
     $result = Constants::getConstantsValues(static::class, "ABC_");
     Assert::type("array", $result);
     Assert::count(2, $result);
