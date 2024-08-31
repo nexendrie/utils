@@ -20,6 +20,7 @@ final class Intervals {
     if(!is_array($result) || count($result) < 1) {
       return null;
     }
+    /** @var string[] $result */
     return $result[0];
   }
   
@@ -35,6 +36,7 @@ final class Intervals {
       return (in_array($number, $numbers, true));
     }
     preg_match(static::PATTERN, $interval, $matches);
+    /** @var array{start: string[], end: string[], limit1: string, limit2: string} $matches */
     $start = $matches["start"][0];
     $end = $matches["end"][0];
     $limit1 = (int) str_replace("-Inf", (string) PHP_INT_MIN, $matches["limit1"]);
