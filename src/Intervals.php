@@ -28,7 +28,7 @@ final class Intervals {
     if(static::findInterval($interval) === null || $interval !== static::findInterval($interval)) {
       return false;
     }
-    if(Strings::startsWith($interval, "{")) {
+    if(str_starts_with($interval, "{")) {
       $numbers = explode(",", Strings::trim($interval, "{}"));
       array_walk($numbers, function(&$value): void {
         $value = (int) $value;

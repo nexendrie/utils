@@ -18,7 +18,7 @@ final class Filter {
   
   public static function getOperator(string $input): string {
     foreach(static::OPERATORS as $operator) {
-      if(Strings::endsWith($input, $operator)) {
+      if(str_ends_with($input, $operator)) {
         return $operator;
       }
     }
@@ -43,7 +43,7 @@ final class Filter {
     foreach($filter as $key => $value) {
       $operator = static::getOperator($key);
       /** @var string $key */
-      $key = Strings::endsWith($key, $operator) ? Strings::before($key, $operator) : $key;
+      $key = str_ends_with($key, $operator) ? Strings::before($key, $operator) : $key;
       if(!eval(static::getCondition($item, $key, $operator, $value))) {
         return false;
       }

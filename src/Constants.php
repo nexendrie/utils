@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-use Nette\Utils\Strings;
 use ReflectionClassConstant as RCC;
 
 /**
@@ -33,7 +32,7 @@ final class Constants {
     $values = [];
     $constants = (new \ReflectionClass($class))->getConstants(array_sum($visibilities));
     foreach($constants as $name => $value) {
-      if(Strings::startsWith($name, $prefix)) {
+      if(str_starts_with($name, $prefix)) {
         $values[] = $value;
       }
     }
