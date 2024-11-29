@@ -1,4 +1,4 @@
-Version 1.9.0-dev
+Version 1.9.0
 - raised minimal version of PHP to 8.1
 - possible BC break: updated signature of TCollection::offsetGet() for PHP 8.1
 - added class Enums
