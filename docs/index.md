@@ -97,6 +97,34 @@ There is class Intervals in this package which makes working with number interva
 [-Inf,+Inf[ any number
 ```
 
+Enums
+-----
+
+If you need to get values from an enum, use can use method Nexendrie\Utils\Enums::getValues. It takes enum name as first parameter, in second parameter you can specify string which all case names should start with. Examples:
+
+```php
+<?php
+declare(strict_types=1);
+
+use Nexendrie\Utils\Enums;
+
+enum BasicEnum {
+  case ABC;
+  case DEF;
+}
+
+enum BackedEnum: string {
+  case ABC = "abc";
+  case DEF = "def";
+}
+
+Enums::getValues(BasicEnum::class); // ["ABC", "DEF"]
+Enums::getValues(BasicEnum::class, "A"); // ["ABC"]
+Enums::getValues(BackedEnum::class); // ["abc", "def"]
+Enums::getValues(BackedEnum::class, "A"); // ["abc"]
+?>
+```
+
 Class constants
 ---------------
 

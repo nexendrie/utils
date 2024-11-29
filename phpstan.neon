@@ -10,3 +10,4 @@ parameters:
         - '#Call to function in_array\(\) with arguments int, array\<int, string\> and true will always evaluate to false#'
         - '#Class Nexendrie\\Utils\\Collection implements generic interface (ArrayAccess|IteratorAggregate) but does not specify its types: TKey, TValue#'
         - '#Method Nexendrie\\Utils\\Collection::getIterator\(\) return type with generic class ArrayIterator does not specify its types: TKey, TValue#'
+        - '#Parameter \#1 \$objectOrClass of class ReflectionEnum constructor expects class-string\<T of UnitEnum\>\|T of UnitEnum, string given#'
