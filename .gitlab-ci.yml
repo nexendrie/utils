@@ -1,4 +1,4 @@
-image: nexendrie/php:8.1
+image: nexendrie/php:8.3
 
 stages:
   - test
