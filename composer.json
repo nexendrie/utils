@@ -15,7 +15,7 @@
     ],
     "support": {
         "source": "https://gitlab.com/nexendrie/utils/",
-        "issues": "https://gitlab.com/nexendrie/utils/issues",
+        "issues": "https://gitlab.com/nexendrie/utils/-/issues",
         "docs": "https://nexendrie.gitlab.io/utils"
     },
     "require": {
