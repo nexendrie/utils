@@ -5,11 +5,9 @@ parameters:
     ignoreErrors:
         - '#Variable (property access|method call) on object#'
         - '#Parameter \#[0-9] (\$index|\$item) \((int|object|int\|null)\) of method Nexendrie\\Utils\\Collection::offset(Get|Set|Unset|Exists)\(\) should be contravariant with parameter (\$offset|\$value) \(mixed\) of method ArrayAccess\<mixed,mixed\>::offset(Get|Set|Unset|Exists)\(\)#'
-        - '#Parameter \#1 (\$objectOrClass|\$argument) of class ReflectionClass constructor expects class-string\<T of object\>\|T of object, string given#'
         - '#Unsafe usage of new static\(\)#'
         - '#Call to function in_array\(\) with arguments int, list\<string\> and true will always evaluate to false#'
         - '#Class Nexendrie\\Utils\\Collection implements generic interface (ArrayAccess|IteratorAggregate) but does not specify its types: TKey, TValue#'
         - '#Method Nexendrie\\Utils\\Collection::getIterator\(\) return type with generic class ArrayIterator does not specify its types: TKey, TValue#'
-        - '#Parameter \#1 \$objectOrClass of class ReflectionEnum constructor expects class-string\<T of UnitEnum\>\|T of UnitEnum, string given#'
         -
             identifier: varTag.nativeType

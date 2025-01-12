@@ -9,6 +9,7 @@ final class Enums {
   /**
    * Get values of all cases from enum $class whose name starts with $prefix
    *
+   * @param class-string<\UnitEnum> $class
    * @throws \ReflectionException
    */
   public static function getValues(string $class, string $prefix = ""): array {

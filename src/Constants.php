@@ -16,6 +16,7 @@ final class Constants {
   /**
    * Get values of all constants from class $class whose name starts with $prefix
    *
+   * @param class-string $class
    * @param int[] $visibilities
    * @throws \ReflectionException
    * @throws \DomainException
