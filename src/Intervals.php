@@ -11,10 +11,11 @@ use Nette\Utils\Strings;
  * @author Jakub Konečný
  */
 final class Intervals {
-  use \Nette\StaticClass;
-  
   public const PATTERN = '/(\{\-?\d+(,\-?\d+)*\})|((?P<start>\[|\])(?P<limit1>\-?\d+|\-Inf),(?P<limit2>\-?\d+|\+Inf)(?P<end>\[|\]))/';
-  
+
+  private function __construct() {
+  }
+
   public static function findInterval(string $text): ?string {
     preg_match(static::PATTERN, $text, $result);
     if(count($result) < 1) {

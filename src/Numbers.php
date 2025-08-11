@@ -9,7 +9,8 @@ namespace Nexendrie\Utils;
  * @author Jakub Konečný
  */
 final class Numbers {
-  use \Nette\StaticClass;
+  private function __construct() {
+  }
   
   /**
    * Ensure that a number is within boundaries

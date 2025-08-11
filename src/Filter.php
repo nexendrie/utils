@@ -12,10 +12,11 @@ use Nette\Utils\Strings;
  * @internal
  */
 final class Filter {
-  use \Nette\StaticClass;
-  
   public const OPERATORS = ["==", ">=", ">", "<=", "<", "!=",];
-  
+
+  private function __construct() {
+  }
+
   public static function getOperator(string $input): string {
     foreach(static::OPERATORS as $operator) {
       if(str_ends_with($input, $operator)) {

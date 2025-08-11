@@ -11,7 +11,8 @@ use ReflectionClassConstant as RCC;
  * @author Jakub Konečný
  */
 final class Constants {
-  use \Nette\StaticClass;
+  private function __construct() {
+  }
   
   /**
    * Get values of all constants from class $class whose name starts with $prefix

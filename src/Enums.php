@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Utils;
 
 final class Enums {
-  use \Nette\StaticClass;
+  private function __construct() {
+  }
 
   /**
    * Get values of all cases from enum $class whose name starts with $prefix
