@@ -11,3 +11,5 @@ parameters:
         - '#Method Nexendrie\\Utils\\Collection::getIterator\(\) return type with generic class ArrayIterator does not specify its types: TKey, TValue#'
         -
             identifier: varTag.nativeType
+        -
+            identifier: ternary.shortNotAllowed

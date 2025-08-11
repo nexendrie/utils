@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-use Nette\Utils\Strings;
-
 /**
  * Filter
  *
@@ -43,8 +41,7 @@ final class Filter {
     /** @var string $key */
     foreach($filter as $key => $value) {
       $operator = static::getOperator($key);
-      /** @var string $key */
-      $key = str_ends_with($key, $operator) ? Strings::before($key, $operator) : $key;
+      $key = strstr($key, $operator, true) ?: $key;
       if(!eval(static::getCondition($item, $key, $operator, $value))) {
         return false;
       }

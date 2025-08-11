@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-use Nette\Utils\Strings;
-
 /**
  * Intervals
  *
@@ -30,7 +28,7 @@ final class Intervals {
       return false;
     }
     if(str_starts_with($interval, "{")) {
-      $numbers = explode(",", Strings::trim($interval, "{}"));
+      $numbers = explode(",", trim($interval, "{}"));
       array_walk($numbers, function(&$value): void {
         $value = (int) $value;
       });
