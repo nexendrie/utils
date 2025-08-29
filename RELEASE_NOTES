@@ -1,0 +1,3 @@
+A new version of Utils is out. Constructors of static classes are now private. nette/utils was removed from dependencies so this package now has no dependencies.
+
+For complete list of changes since previous version, see CHANGELOG.md.
