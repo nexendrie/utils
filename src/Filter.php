@@ -27,10 +27,7 @@ final class Filter
         return self::OPERATORS[0];
     }
 
-    /**
-     * @param mixed $value
-     */
-    private static function getCondition(object $item, string $key, string $operator, $value): string
+    private static function getCondition(object $item, string $key, string $operator, mixed $value): string
     {
         if ($key === "%class%") {
             return "return \"" . get_class($item) . "\" $operator \"$value\";";
