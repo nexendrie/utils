@@ -13,7 +13,7 @@ require __DIR__ . "/../../bootstrap.php";
  */
 final class IntervalsTest extends \Tester\TestCase
 {
-    protected function tryInterval(string $input, ?string $result): void
+    private function tryInterval(string $input, ?string $result): void
     {
         Assert::same($result, Intervals::findInterval($input));
     }

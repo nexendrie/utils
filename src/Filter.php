@@ -19,18 +19,18 @@ final class Filter
 
     public static function getOperator(string $input): string
     {
-        foreach (static::OPERATORS as $operator) {
+        foreach (self::OPERATORS as $operator) {
             if (str_ends_with($input, $operator)) {
                 return $operator;
             }
         }
-        return static::OPERATORS[0];
+        return self::OPERATORS[0];
     }
 
     /**
      * @param mixed $value
      */
-    protected static function getCondition(object $item, string $key, string $operator, $value): string
+    private static function getCondition(object $item, string $key, string $operator, $value): string
     {
         if ($key === "%class%") {
             return "return \"" . get_class($item) . "\" $operator \"$value\";";
@@ -45,9 +45,9 @@ final class Filter
     {
         /** @var string $key */
         foreach ($filter as $key => $value) {
-            $operator = static::getOperator($key);
+            $operator = self::getOperator($key);
             $key = strstr($key, $operator, true) ?: $key;
-            if (!eval(static::getCondition($item, $key, $operator, $value))) {
+            if (!eval(self::getCondition($item, $key, $operator, $value))) {
                 return false;
             }
         }
@@ -60,7 +60,7 @@ final class Filter
             return $input;
         }
         return array_values(array_filter($input, function (object $item) use ($filter): bool {
-            return static::matches($item, $filter);
+            return self::matches($item, $filter);
         }));
     }
 }

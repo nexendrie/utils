@@ -19,7 +19,7 @@ final class ConstantsTest extends \Tester\TestCase
 
     public function testGetConstantsValues(): void
     {
-        $result = Constants::getConstantsValues(static::class, "ABC_");
+        $result = Constants::getConstantsValues(self::class, "ABC_");
         Assert::type("array", $result);
         Assert::count(2, $result);
         foreach ($result as $item) {
@@ -28,20 +28,20 @@ final class ConstantsTest extends \Tester\TestCase
         Assert::same("a", $result[0]);
         Assert::same("b", $result[1]);
 
-        $result = Constants::getConstantsValues(static::class);
+        $result = Constants::getConstantsValues(self::class);
         Assert::type("array", $result);
         Assert::count(5, $result);
 
-        $result = Constants::getConstantsValues(class: static::class, visibilities: [\ReflectionClassConstant::IS_PUBLIC]);
+        $result = Constants::getConstantsValues(class: self::class, visibilities: [\ReflectionClassConstant::IS_PUBLIC]);
         Assert::type("array", $result);
         Assert::count(5, $result);
 
-        $result = Constants::getConstantsValues(class: static::class, visibilities: [\ReflectionClassConstant::IS_PROTECTED]);
+        $result = Constants::getConstantsValues(class: self::class, visibilities: [\ReflectionClassConstant::IS_PROTECTED]);
         Assert::type("array", $result);
         Assert::count(0, $result);
 
         Assert::exception(function () {
-            Constants::getConstantsValues(class: static::class, visibilities: [15]);
+            Constants::getConstantsValues(class: self::class, visibilities: [15]);
         }, \DomainException::class);
     }
 }

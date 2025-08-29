@@ -18,7 +18,7 @@ final class Intervals
 
     public static function findInterval(string $text): ?string
     {
-        preg_match(static::PATTERN, $text, $result);
+        preg_match(self::PATTERN, $text, $result);
         if (count($result) < 1) {
             return null;
         }
@@ -28,7 +28,7 @@ final class Intervals
 
     public static function isInInterval(int $number, string $interval): bool
     {
-        if (static::findInterval($interval) === null || $interval !== static::findInterval($interval)) {
+        if (self::findInterval($interval) === null || $interval !== self::findInterval($interval)) {
             return false;
         }
         if (str_starts_with($interval, "{")) {
@@ -38,7 +38,7 @@ final class Intervals
             });
             return (in_array($number, $numbers, true));
         }
-        preg_match(static::PATTERN, $interval, $matches);
+        preg_match(self::PATTERN, $interval, $matches);
         /** @var array{start: string[], end: string[], limit1: string, limit2: string} $matches */
         $start = $matches["start"][0];
         $end = $matches["end"][0];
