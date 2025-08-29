@@ -8,8 +8,8 @@ namespace Nexendrie\Utils;
  *
  * @author Jakub Konečný
  */
-final class MaxSizedCollection extends Collection {
-  protected string $class = Item::class;
-  protected int $maxSize = 1;
+final class MaxSizedCollection extends Collection
+{
+    protected string $class = Item::class;
+    protected int $maxSize = 1;
 }
-?>

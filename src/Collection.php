@@ -8,7 +8,7 @@ namespace Nexendrie\Utils;
  *
  * @author Jakub Konečný
  */
-abstract class Collection implements \ArrayAccess, \Countable, \IteratorAggregate {
-  use TCollection;
+abstract class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
+{
+    use TCollection;
 }
-?>

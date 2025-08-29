@@ -8,13 +8,14 @@ namespace Nexendrie\Utils;
  *
  * @author Jakub Konečný
  */
-final class ParameterCollection extends Collection {
-  protected string $class = Item::class;
-  public string $name = "";
-  
-  public function __construct(string $name) {
-    parent::__construct();
-    $this->name = $name;
-  }
+final class ParameterCollection extends Collection
+{
+    protected string $class = Item::class;
+    public string $name = "";
+
+    public function __construct(string $name)
+    {
+        parent::__construct();
+        $this->name = $name;
+    }
 }
-?>
