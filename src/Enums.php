@@ -23,11 +23,10 @@ final class Enums
             if (!str_starts_with($case->getName(), $prefix)) {
                 continue;
             }
-            if ($case instanceof \ReflectionEnumBackedCase) {
-                $values[] = $case->getBackingValue();
-            } else {
-                $values[] = $case->getName();
-            }
+            $values[] = match ($case::class) {
+                \ReflectionEnumBackedCase::class => $case->getBackingValue(),
+                default => $case->getName(),
+            };
         }
         return $values;
     }
