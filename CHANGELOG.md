@@ -1,4 +1,4 @@
-Version 1.9.0+dev
+Version 1.9.1
 - made constructor of static classes private
 - remove nette/utils from dependencies
 - possible BC break: changed return of TCollection::fromArray() to static
