@@ -32,11 +32,17 @@ final class ConstantsTest extends \Tester\TestCase
         Assert::type("array", $result);
         Assert::count(5, $result);
 
-        $result = Constants::getConstantsValues(class: self::class, visibilities: [\ReflectionClassConstant::IS_PUBLIC]);
+        $result = Constants::getConstantsValues(
+            class: self::class,
+            visibilities: [\ReflectionClassConstant::IS_PUBLIC]
+        );
         Assert::type("array", $result);
         Assert::count(5, $result);
 
-        $result = Constants::getConstantsValues(class: self::class, visibilities: [\ReflectionClassConstant::IS_PROTECTED]);
+        $result = Constants::getConstantsValues(
+            class: self::class,
+            visibilities: [\ReflectionClassConstant::IS_PROTECTED]
+        );
         Assert::type("array", $result);
         Assert::count(0, $result);
 

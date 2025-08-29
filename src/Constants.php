@@ -24,8 +24,11 @@ final class Constants
      * @throws \ReflectionException
      * @throws \DomainException
      */
-    public static function getConstantsValues(string $class, string $prefix = "", array $visibilities = [RCC::IS_PUBLIC, RCC::IS_PROTECTED, RCC::IS_PRIVATE,]): array
-    {
+    public static function getConstantsValues(
+        string $class,
+        string $prefix = "",
+        array $visibilities = [RCC::IS_PUBLIC, RCC::IS_PROTECTED, RCC::IS_PRIVATE,]
+    ): array {
         $allowedVisibilities = [
             RCC::IS_PUBLIC, RCC::IS_PROTECTED, RCC::IS_PRIVATE,
         ];
