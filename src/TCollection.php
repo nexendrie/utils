@@ -166,9 +166,8 @@ trait TCollection
      *
      * @param object[] $items
      * @param mixed ...$args
-     * @return static
      */
-    public static function fromArray(array $items, ...$args): self
+    public static function fromArray(array $items, ...$args): static
     {
         $collection = new static(...$args);
         foreach ($items as $item) {

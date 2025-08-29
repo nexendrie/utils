@@ -1,6 +1,7 @@
 Version 1.9.0+dev
 - made constructor of static classes private
 - remove nette/utils from dependencies
+- possible BC break: changed return of TCollection::fromArray() to static
 
 Version 1.9.0
 - raised minimal version of PHP to 8.1
