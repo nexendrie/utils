@@ -59,7 +59,7 @@ final class CollectionTest extends \Tester\TestCase
     {
         $this->col[] = new Item("Item 1");
         $this->col[0] = new Item("Item 2");
-        Assert::same("Item 2", $this->col[0]->var1); // @phpstan-ignore property.notFound
+        Assert::same("Item 2", $this->col[0]->var1);
         Assert::exception(function () {
             $this->col[] = new \stdClass();
         }, \InvalidArgumentException::class);
