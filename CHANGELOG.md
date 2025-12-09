@@ -1,3 +1,6 @@
+Version 1.10.0-dev
+- deprecated Numbers::range() in favor of new method clamp
+
 Version 1.9.1
 - made constructor of static classes private
 - remove nette/utils from dependencies

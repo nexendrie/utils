@@ -11,9 +11,9 @@ final class NumbersTest extends \Tester\TestCase
 {
     public function testRange(): void
     {
-        Assert::same(0, Numbers::range(-10, 0, 50));
-        Assert::same(50, Numbers::range(100, 0, 50));
-        Assert::same(25, Numbers::range(25, 0, 50));
+        Assert::same(0, Numbers::range(-10, 0, 50)); // @phpstan-ignore staticMethod.deprecated
+        Assert::same(50, Numbers::range(100, 0, 50)); // @phpstan-ignore staticMethod.deprecated
+        Assert::same(25, Numbers::range(25, 0, 50)); // @phpstan-ignore staticMethod.deprecated
     }
 
     public function testIsInRange(): void

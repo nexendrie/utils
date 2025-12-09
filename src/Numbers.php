@@ -17,9 +17,17 @@ final class Numbers
     /**
      * Ensure that a number is within boundaries
      */
-    public static function range(int $number, int $min, int $max): int
+    public static function clamp(int $number, int $min, int $max): int
     {
         return min(max($number, $min), $max);
+    }
+
+    /**
+     * @deprecated Use {@see self::clamp()} instead
+     */
+    public static function range(int $number, int $min, int $max): int
+    {
+        return self::clamp(...func_get_args());
     }
 
     /**
