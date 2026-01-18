@@ -1,4 +1,4 @@
-Version 1.10.0-dev
+Version 1.10.0
 - deprecated Numbers::range() in favor of new method clamp
 
 Version 1.9.1
