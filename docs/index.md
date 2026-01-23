@@ -7,7 +7,7 @@ Links
 -----
 
 Primary repository: https://gitlab.com/nexendrie/utils
-Github repository: https://github.com/nexendrie/utils
+GitHub repository: https://github.com/nexendrie/utils
 Packagist: https://packagist.org/packages/nexendrie/utils
 
 Installation
@@ -128,7 +128,7 @@ Enums::getValues(BackedEnum::class, "A"); // ["abc"]
 Class constants
 ---------------
 
-If you need to get values of constants from certain class (e. g. for validating values), you can use method Nexendrie\Utils\Constants::getConstantsValues. It takes class name as first parameter, in second parameter you can specify string which all constant names should start with. It is also possible to select only constants with certain visibility (multiple values are allowed, default is all visibilities), use appropriate constants from class ReflectionClassConstant. Examples:
+If you need to get values of constants from certain class (e.g. for validating values), you can use method Nexendrie\Utils\Constants::getConstantsValues. It takes class name as first parameter, in second parameter you can specify string which all constant names should start with. It is also possible to select only constants with certain visibility (multiple values are allowed, default is all visibilities), use appropriate constants from class ReflectionClassConstant. Examples:
 
 ```php
 <?php
