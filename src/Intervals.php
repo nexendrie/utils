@@ -22,7 +22,6 @@ final class Intervals
         if (count($result) < 1) {
             return null;
         }
-        /** @var string[] $result */
         return $result[0];
     }
 
