@@ -72,7 +72,7 @@ final class CollectionTest extends \Tester\TestCase
     {
         $col = new UniqueCollection();
         $col[] = new Item("Item 1");
-        Assert::exception(function () use ($col) {
+        Assert::exception(static function () use ($col) {
             $col[] = new Item("Item 1");
         }, \RuntimeException::class, "Duplicate var1 Item 1.");
     }
@@ -104,7 +104,7 @@ final class CollectionTest extends \Tester\TestCase
     {
         $col = new MaxSizedCollection();
         $col[] = new Item("Item 1");
-        Assert::exception(function () use ($col) {
+        Assert::exception(static function () use ($col) {
             $col[] = new Item("Item 1");
         }, \RuntimeException::class, "Collection reached its max size. Cannot add more items.");
     }
@@ -112,13 +112,13 @@ final class CollectionTest extends \Tester\TestCase
     public function testCheckers(): void
     {
         $col = new TestCollection();
-        $col->addChecker(function (Item $item) {
+        $col->addChecker(static function (Item $item) {
             if ($item->var1 === "Item 2") {
                 throw new \RuntimeException("");
             }
         });
         $col[] = new Item("Item 1");
-        Assert::exception(function () use ($col) {
+        Assert::exception(static function () use ($col) {
             $col[] = new Item("Item 2");
         }, \RuntimeException::class, "");
     }

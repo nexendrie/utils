@@ -46,7 +46,7 @@ final class ConstantsTest extends \Tester\TestCase
         Assert::type("array", $result);
         Assert::count(0, $result);
 
-        Assert::exception(function () {
+        Assert::exception(static function () {
             Constants::getConstantsValues(class: self::class, visibilities: [15]);
         }, \DomainException::class);
     }

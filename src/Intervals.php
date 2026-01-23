@@ -32,7 +32,7 @@ final class Intervals
         }
         if (str_starts_with($interval, "{")) {
             $numbers = explode(",", trim($interval, "{}"));
-            array_walk($numbers, function (&$value): void {
+            array_walk($numbers, static function (&$value): void {
                 $value = (int) $value;
             });
             return (in_array($number, $numbers, true));

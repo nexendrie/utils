@@ -56,7 +56,7 @@ final class Filter
         if (count($filter) === 0) {
             return $input;
         }
-        return array_values(array_filter($input, function (object $item) use ($filter): bool {
+        return array_values(array_filter($input, static function (object $item) use ($filter): bool {
             return self::matches($item, $filter);
         }));
     }
