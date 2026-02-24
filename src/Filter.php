@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
+use UnitEnum;
+
 /**
  * Filter
  *
@@ -34,6 +36,9 @@ final class Filter
         }
         if (preg_match("#([a-zA-Z0-9_]+)\(\)\$#", $key, $matches) === 1) {
             return "return  \"{$item->{$matches[1]}()}\" $operator  \"$value\";";
+        }
+        if ($item->$key instanceof UnitEnum && $value instanceof UnitEnum) {
+            return "return " . $item->$key::class . "::" . $item->$key->name . " $operator " . $value::class . "::" . $value->name . ";";
         }
         return "return \"{$item->$key}\" $operator \"$value\";";
     }

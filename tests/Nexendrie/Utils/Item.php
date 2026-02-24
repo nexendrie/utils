@@ -10,8 +10,11 @@ namespace Nexendrie\Utils;
  */
 final class Item
 {
-    public function __construct(public string $var1)
-    {
+    public function __construct(
+        public string $var1,
+        public BasicEnum $var2 = BasicEnum::ABC,
+        public BackedEnum $var3 = BackedEnum::ABC
+    ) {
     }
 
     public function method(string $value = "1"): bool

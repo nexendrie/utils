@@ -1,3 +1,6 @@
+Version 1.10.0+dev
+- fixed filtering on enums in collections
+
 Version 1.10.0
 - deprecated Numbers::range() in favor of new method clamp
 

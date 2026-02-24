@@ -25,10 +25,14 @@ final class FilterTest extends \Tester\TestCase
     public function testMatches(): void
     {
         $items = [
-            new Item("1"), new Item("2"),
+            new Item("1"), new Item("2", BasicEnum::DEF, BackedEnum::DEF),
         ];
         Assert::true(Filter::matches($items[0], ["var1<=" => 1]));
         Assert::false(Filter::matches($items[1], ["var1<=" => 1]));
+        Assert::true(Filter::matches($items[0], ["var2" => BasicEnum::ABC]));
+        Assert::false(Filter::matches($items[1], ["var2" => BasicEnum::ABC]));
+        Assert::true(Filter::matches($items[0], ["var3" => BackedEnum::ABC]));
+        Assert::false(Filter::matches($items[1], ["var3" => BackedEnum::ABC]));
         Assert::true(Filter::matches($items[0], ["%class%" => Item::class]));
         Assert::false(Filter::matches($items[0], ["%class%!=" => Item::class]));
         Assert::true(Filter::matches($items[0], ["method()" => true]));
@@ -38,15 +42,21 @@ final class FilterTest extends \Tester\TestCase
     public function testApplyFilter(): void
     {
         $items = [
-            new Item("1"), new Item("2"), new Item("3"),
+            new Item("1"), new Item("2"), new Item("3", BasicEnum::DEF, BackedEnum::DEF),
         ];
         Assert::count(1, Filter::applyFilter($items, ["var1" => 1]));
+        Assert::count(2, Filter::applyFilter($items, ["var2" => BasicEnum::ABC]));
+        Assert::count(2, Filter::applyFilter($items, ["var3" => BackedEnum::ABC]));
         Assert::count(1, Filter::applyFilter($items, ["var1==" => 1]));
+        Assert::count(2, Filter::applyFilter($items, ["var2==" => BasicEnum::ABC]));
+        Assert::count(2, Filter::applyFilter($items, ["var3==" => BackedEnum::ABC]));
         Assert::count(3, Filter::applyFilter($items, ["var1>=" => 1]));
         Assert::count(2, Filter::applyFilter($items, ["var1>" => 1]));
         Assert::count(2, Filter::applyFilter($items, ["var1<=" => 2]));
         Assert::count(1, Filter::applyFilter($items, ["var1<" => 2]));
         Assert::count(2, Filter::applyFilter($items, ["var1!=" => 3]));
+        Assert::count(1, Filter::applyFilter($items, ["var2!=" => BasicEnum::ABC]));
+        Assert::count(1, Filter::applyFilter($items, ["var3!=" => BackedEnum::ABC]));
     }
 }
 
