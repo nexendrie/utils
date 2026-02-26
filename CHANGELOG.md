@@ -1,4 +1,4 @@
-Version 1.10.0+dev
+Version 1.10.1
 - fixed filtering on enums in collections
 
 Version 1.10.0
