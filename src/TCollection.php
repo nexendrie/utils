@@ -28,10 +28,10 @@ trait TCollection
 
     protected function addDefaultCheckers(): void
     {
-        $this->addChecker([$this, "checkLock"]);
-        $this->addChecker([$this, "checkType"]);
-        $this->addChecker([$this, "checkUniqueness"]);
-        $this->addChecker([$this, "checkSize"]);
+        $this->addChecker($this->checkLock(...));
+        $this->addChecker($this->checkType(...));
+        $this->addChecker($this->checkUniqueness(...));
+        $this->addChecker($this->checkSize(...));
     }
 
     public function isLocked(): bool
