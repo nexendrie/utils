@@ -16,6 +16,13 @@ final class NumbersTest extends \Tester\TestCase
         Assert::same(25, Numbers::range(25, 0, 50)); // @phpstan-ignore staticMethod.deprecated
     }
 
+    public function testClam(): void
+    {
+        Assert::same(0, Numbers::clamp(-10, 0, 50));
+        Assert::same(50, Numbers::clamp(100, 0, 50));
+        Assert::same(25, Numbers::clamp(25, 0, 50));
+    }
+
     public function testIsInRange(): void
     {
         Assert::true(Numbers::isInRange(0, 0, 5));
