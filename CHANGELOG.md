@@ -1,3 +1,6 @@
+Version 1.11.0-dev
+- deprecated Constants::getConstantsValues() in favor of new method getValues
+
 Version 1.10.1
 - fixed filtering on enums in collections
 
