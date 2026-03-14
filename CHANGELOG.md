@@ -1,3 +1,6 @@
+Version 1.12.0-dev
+- raised minimal version of PHP to 8.3
+
 Version 1.11.0
 - deprecated Constants::getConstantsValues() in favor of new method getValues
 
