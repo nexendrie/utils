@@ -63,7 +63,7 @@ trait TCollection
     }
 
     /**
-     * @param int|NULL $index
+     * @param int|null $index
      * @return object
      * @throws \OutOfRangeException
      */
@@ -123,7 +123,7 @@ trait TCollection
     }
 
     /**
-     * @param int|NULL $index
+     * @param int|null $index
      * @param object $item
      * @throws \OutOfRangeException
      * @throws \InvalidArgumentException
