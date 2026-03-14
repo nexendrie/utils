@@ -1,4 +1,4 @@
-Version 1.11.0-dev
+Version 1.11.0
 - deprecated Constants::getConstantsValues() in favor of new method getValues
 
 Version 1.10.1
