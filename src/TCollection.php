@@ -169,7 +169,7 @@ trait TCollection
      */
     public static function fromArray(array $items, ...$args): static
     {
-        $collection = new static(...$args);
+        $collection = new static(...$args); // @phpstan-ignore new.static
         foreach ($items as $item) {
             $collection[] = $item;
         }
