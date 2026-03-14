@@ -34,7 +34,7 @@ final class Constants
         ];
         foreach ($visibilities as $visibility) {
             if (!in_array($visibility, $allowedVisibilities, true)) {
-                throw new \DomainException("Invalid visibility $visibility");
+                throw new \DomainException(sprintf("Invalid visibility %s", $visibility));
             }
         }
         $values = [];

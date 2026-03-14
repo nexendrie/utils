@@ -90,7 +90,7 @@ trait TCollection
     protected function checkType(object $newItem, self $collection): void
     {
         if (!$newItem instanceof $collection->class) {
-            throw new \InvalidArgumentException("Argument must be of $this->class type.");
+            throw new \InvalidArgumentException(sprintf("Argument must be of %s type.", $this->class));
         }
     }
 
@@ -101,7 +101,7 @@ trait TCollection
             return;
         }
         if ($this->hasItems([$uniqueProperty => $newItem->$uniqueProperty])) {
-            throw new \RuntimeException("Duplicate $uniqueProperty {$newItem->$uniqueProperty}.");
+            throw new \RuntimeException(sprintf("Duplicate %s %s.", $uniqueProperty, $newItem->$uniqueProperty));
         }
     }
 
