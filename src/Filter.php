@@ -13,7 +13,7 @@ use UnitEnum;
  */
 final class Filter
 {
-    public const OPERATORS = ["==", ">=", ">", "<=", "<", "!=",];
+    public const array OPERATORS = ["==", ">=", ">", "<=", "<", "!=",];
 
     private function __construct()
     {
