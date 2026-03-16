@@ -3,22 +3,18 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-require __DIR__ . "/../../bootstrap.php";
-
-use Tester\Assert;
-
 /**
  * @author Jakub Konečný
  * @testCase
  */
-final class FilterTest extends \Tester\TestCase
+final class FilterTest extends \MyTester\TestCase
 {
     public function testGetOperator(): void
     {
         $input = "abc";
-        Assert::same("==", Filter::getOperator($input));
+        $this->assertSame("==", Filter::getOperator($input));
         foreach (Filter::OPERATORS as $operator) {
-            Assert::same($operator, Filter::getOperator($input . $operator));
+            $this->assertSame($operator, Filter::getOperator($input . $operator));
         }
     }
 
@@ -27,16 +23,16 @@ final class FilterTest extends \Tester\TestCase
         $items = [
             new Item("1"), new Item("2", BasicEnum::DEF, BackedEnum::DEF),
         ];
-        Assert::true(Filter::matches($items[0], ["var1<=" => 1]));
-        Assert::false(Filter::matches($items[1], ["var1<=" => 1]));
-        Assert::true(Filter::matches($items[0], ["var2" => BasicEnum::ABC]));
-        Assert::false(Filter::matches($items[1], ["var2" => BasicEnum::ABC]));
-        Assert::true(Filter::matches($items[0], ["var3" => BackedEnum::ABC]));
-        Assert::false(Filter::matches($items[1], ["var3" => BackedEnum::ABC]));
-        Assert::true(Filter::matches($items[0], ["%class%" => Item::class]));
-        Assert::false(Filter::matches($items[0], ["%class%!=" => Item::class]));
-        Assert::true(Filter::matches($items[0], ["method()" => true]));
-        Assert::false(Filter::matches($items[0], ["method()!=" => true]));
+        $this->assertTrue(Filter::matches($items[0], ["var1<=" => 1]));
+        $this->assertFalse(Filter::matches($items[1], ["var1<=" => 1]));
+        $this->assertTrue(Filter::matches($items[0], ["var2" => BasicEnum::ABC]));
+        $this->assertFalse(Filter::matches($items[1], ["var2" => BasicEnum::ABC]));
+        $this->assertTrue(Filter::matches($items[0], ["var3" => BackedEnum::ABC]));
+        $this->assertFalse(Filter::matches($items[1], ["var3" => BackedEnum::ABC]));
+        $this->assertTrue(Filter::matches($items[0], ["%class%" => Item::class]));
+        $this->assertFalse(Filter::matches($items[0], ["%class%!=" => Item::class]));
+        $this->assertTrue(Filter::matches($items[0], ["method()" => true]));
+        $this->assertFalse(Filter::matches($items[0], ["method()!=" => true]));
     }
 
     public function testApplyFilter(): void
@@ -44,21 +40,18 @@ final class FilterTest extends \Tester\TestCase
         $items = [
             new Item("1"), new Item("2"), new Item("3", BasicEnum::DEF, BackedEnum::DEF),
         ];
-        Assert::count(1, Filter::applyFilter($items, ["var1" => 1]));
-        Assert::count(2, Filter::applyFilter($items, ["var2" => BasicEnum::ABC]));
-        Assert::count(2, Filter::applyFilter($items, ["var3" => BackedEnum::ABC]));
-        Assert::count(1, Filter::applyFilter($items, ["var1==" => 1]));
-        Assert::count(2, Filter::applyFilter($items, ["var2==" => BasicEnum::ABC]));
-        Assert::count(2, Filter::applyFilter($items, ["var3==" => BackedEnum::ABC]));
-        Assert::count(3, Filter::applyFilter($items, ["var1>=" => 1]));
-        Assert::count(2, Filter::applyFilter($items, ["var1>" => 1]));
-        Assert::count(2, Filter::applyFilter($items, ["var1<=" => 2]));
-        Assert::count(1, Filter::applyFilter($items, ["var1<" => 2]));
-        Assert::count(2, Filter::applyFilter($items, ["var1!=" => 3]));
-        Assert::count(1, Filter::applyFilter($items, ["var2!=" => BasicEnum::ABC]));
-        Assert::count(1, Filter::applyFilter($items, ["var3!=" => BackedEnum::ABC]));
+        $this->assertCount(1, Filter::applyFilter($items, ["var1" => 1]));
+        $this->assertCount(2, Filter::applyFilter($items, ["var2" => BasicEnum::ABC]));
+        $this->assertCount(2, Filter::applyFilter($items, ["var3" => BackedEnum::ABC]));
+        $this->assertCount(1, Filter::applyFilter($items, ["var1==" => 1]));
+        $this->assertCount(2, Filter::applyFilter($items, ["var2==" => BasicEnum::ABC]));
+        $this->assertCount(2, Filter::applyFilter($items, ["var3==" => BackedEnum::ABC]));
+        $this->assertCount(3, Filter::applyFilter($items, ["var1>=" => 1]));
+        $this->assertCount(2, Filter::applyFilter($items, ["var1>" => 1]));
+        $this->assertCount(2, Filter::applyFilter($items, ["var1<=" => 2]));
+        $this->assertCount(1, Filter::applyFilter($items, ["var1<" => 2]));
+        $this->assertCount(2, Filter::applyFilter($items, ["var1!=" => 3]));
+        $this->assertCount(1, Filter::applyFilter($items, ["var2!=" => BasicEnum::ABC]));
+        $this->assertCount(1, Filter::applyFilter($items, ["var3!=" => BackedEnum::ABC]));
     }
 }
-
-$test = new FilterTest();
-$test->run();

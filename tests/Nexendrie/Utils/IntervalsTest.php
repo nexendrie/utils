@@ -3,19 +3,15 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-use Tester\Assert;
-
-require __DIR__ . "/../../bootstrap.php";
-
 /**
  * @author Jakub Konečný
  * @testCase
  */
-final class IntervalsTest extends \Tester\TestCase
+final class IntervalsTest extends \MyTester\TestCase
 {
     private function tryInterval(string $input, ?string $result): void
     {
-        Assert::same($result, Intervals::findInterval($input));
+        $this->assertSame($result, Intervals::findInterval($input));
     }
 
     public function testFindInterval(): void
@@ -38,29 +34,26 @@ final class IntervalsTest extends \Tester\TestCase
 
     public function testIsInInterval(): void
     {
-        Assert::true(Intervals::isInInterval(10, "{10}"));
-        Assert::true(Intervals::isInInterval(-15, "{-15}"));
-        Assert::false(Intervals::isInInterval(10, "abc"));
-        Assert::false(Intervals::isInInterval(-10, "{-15}"));
-        Assert::false(Intervals::isInInterval(10, "{1,2,3,9,15}"));
-        Assert::true(Intervals::isInInterval(9, "{1,2,3,9,15}"));
-        Assert::true(Intervals::isInInterval(-10, "{1,2,3,9,15,-10}"));
-        Assert::false(Intervals::isInInterval(2, "[9,1]"));
-        Assert::false(Intervals::isInInterval(1, "[2,5]"));
-        Assert::false(Intervals::isInInterval(10, "[2,5]"));
-        Assert::false(Intervals::isInInterval(2, "]2,5]"));
-        Assert::false(Intervals::isInInterval(5, "[2,5["));
-        Assert::true(Intervals::isInInterval(2, "[2,5]"));
-        Assert::true(Intervals::isInInterval(5, "[2,5]"));
-        Assert::true(Intervals::isInInterval(3, "[2,5]"));
-        Assert::true(Intervals::isInInterval(-3, "[-5,-2]"));
-        Assert::true(Intervals::isInInterval(0, "]-Inf,+Inf["));
-        Assert::true(Intervals::isInInterval(-10, "]-Inf,+Inf["));
-        Assert::true(Intervals::isInInterval(0, "]-Inf,1]"));
-        Assert::true(Intervals::isInInterval(0, "[0,+Inf["));
-        Assert::false(Intervals::isInInterval(0, "]+Inf,-Inf["));
+        $this->assertTrue(Intervals::isInInterval(10, "{10}"));
+        $this->assertTrue(Intervals::isInInterval(-15, "{-15}"));
+        $this->assertFalse(Intervals::isInInterval(10, "abc"));
+        $this->assertFalse(Intervals::isInInterval(-10, "{-15}"));
+        $this->assertFalse(Intervals::isInInterval(10, "{1,2,3,9,15}"));
+        $this->assertTrue(Intervals::isInInterval(9, "{1,2,3,9,15}"));
+        $this->assertTrue(Intervals::isInInterval(-10, "{1,2,3,9,15,-10}"));
+        $this->assertFalse(Intervals::isInInterval(2, "[9,1]"));
+        $this->assertFalse(Intervals::isInInterval(1, "[2,5]"));
+        $this->assertFalse(Intervals::isInInterval(10, "[2,5]"));
+        $this->assertFalse(Intervals::isInInterval(2, "]2,5]"));
+        $this->assertFalse(Intervals::isInInterval(5, "[2,5["));
+        $this->assertTrue(Intervals::isInInterval(2, "[2,5]"));
+        $this->assertTrue(Intervals::isInInterval(5, "[2,5]"));
+        $this->assertTrue(Intervals::isInInterval(3, "[2,5]"));
+        $this->assertTrue(Intervals::isInInterval(-3, "[-5,-2]"));
+        $this->assertTrue(Intervals::isInInterval(0, "]-Inf,+Inf["));
+        $this->assertTrue(Intervals::isInInterval(-10, "]-Inf,+Inf["));
+        $this->assertTrue(Intervals::isInInterval(0, "]-Inf,1]"));
+        $this->assertTrue(Intervals::isInInterval(0, "[0,+Inf["));
+        $this->assertFalse(Intervals::isInInterval(0, "]+Inf,-Inf["));
     }
 }
-
-$test = new IntervalsTest();
-$test->run();

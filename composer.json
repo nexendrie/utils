@@ -20,7 +20,7 @@
         "php": ">=8.3.0"
     },
     "require-dev": {
-        "nexendrie/code-quality": "dev-master"
+        "nexendrie/code-quality": "dev-mytester"
     },
     "autoload": {
         "psr-4": {

@@ -3,15 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-use Tester\Assert;
-
-require __DIR__ . "/../../bootstrap.php";
-
 /**
  * @author Jakub Konečný
  * @testCase
  */
-final class CollectionTest extends \Tester\TestCase
+final class CollectionTest extends \MyTester\TestCase
 {
     protected Collection $col;
 
@@ -22,9 +18,9 @@ final class CollectionTest extends \Tester\TestCase
 
     public function testCount(): void
     {
-        Assert::same(0, count($this->col));
+        $this->assertSame(0, count($this->col));
         $this->col[] = new Item("Item 1");
-        Assert::count(1, $this->col);
+        $this->assertCount(1, $this->col);
     }
 
     public function testGetIterator(): void
@@ -34,23 +30,23 @@ final class CollectionTest extends \Tester\TestCase
         }
         /** @var Item $item */
         foreach ($this->col as $item) {
-            Assert::same("Item 1", $item->var1);
+            $this->assertSame("Item 1", $item->var1);
         }
     }
 
     public function testOffsetExists(): void
     {
-        Assert::false(isset($this->col[0]));
+        $this->assertFalse(isset($this->col[0]));
         $this->col[] = new Item("Item 1");
-        Assert::true(isset($this->col[0]));
+        $this->assertTrue(isset($this->col[0]));
     }
 
     public function testOffsetGet(): void
     {
         $this->col[] = new Item("Item 1");
         $item = $this->col[0];
-        Assert::type(Item::class, $item);
-        Assert::exception(function () {
+        $this->assertType(Item::class, $item);
+        $this->assertThrowsException(function () {
             $item = $this->col[1];
         }, \OutOfRangeException::class);
     }
@@ -59,11 +55,11 @@ final class CollectionTest extends \Tester\TestCase
     {
         $this->col[] = new Item("Item 1");
         $this->col[0] = new Item("Item 2");
-        Assert::same("Item 2", $this->col[0]->var1);
-        Assert::exception(function () {
+        $this->assertSame("Item 2", $this->col[0]->var1);
+        $this->assertThrowsException(function () {
             $this->col[] = new \stdClass();
         }, \InvalidArgumentException::class);
-        Assert::exception(function () {
+        $this->assertThrowsException(function () {
             $this->col[-1] = new Item("Item 1");
         }, \OutOfRangeException::class);
     }
@@ -72,7 +68,7 @@ final class CollectionTest extends \Tester\TestCase
     {
         $col = new UniqueCollection();
         $col[] = new Item("Item 1");
-        Assert::exception(static function () use ($col) {
+        $this->assertThrowsException(static function () use ($col) {
             $col[] = new Item("Item 1");
         }, \RuntimeException::class, "Duplicate var1 Item 1.");
     }
@@ -81,8 +77,8 @@ final class CollectionTest extends \Tester\TestCase
     {
         $this->col[] = new Item("Item 1");
         unset($this->col[0]);
-        Assert::false(isset($this->col[0]));
-        Assert::exception(function () {
+        $this->assertFalse(isset($this->col[0]));
+        $this->assertThrowsException(function () {
             unset($this->col[0]);
         }, \OutOfRangeException::class);
     }
@@ -91,11 +87,11 @@ final class CollectionTest extends \Tester\TestCase
     {
         $this->col[] = new Item("Item 1");
         $this->col->lock();
-        Assert::true($this->col->isLocked());
-        Assert::exception(function () {
+        $this->assertTrue($this->col->isLocked());
+        $this->assertThrowsException(function () {
             $this->col[] = new Item("Item 1");
         }, \RuntimeException::class);
-        Assert::exception(function () {
+        $this->assertThrowsException(function () {
             unset($this->col[0]);
         }, \RuntimeException::class);
     }
@@ -104,7 +100,7 @@ final class CollectionTest extends \Tester\TestCase
     {
         $col = new MaxSizedCollection();
         $col[] = new Item("Item 1");
-        Assert::exception(static function () use ($col) {
+        $this->assertThrowsException(static function () use ($col) {
             $col[] = new Item("Item 1");
         }, \RuntimeException::class, "Collection reached its max size. Cannot add more items.");
     }
@@ -118,7 +114,7 @@ final class CollectionTest extends \Tester\TestCase
             }
         });
         $col[] = new Item("Item 1");
-        Assert::exception(static function () use ($col) {
+        $this->assertThrowsException(static function () use ($col) {
             $col[] = new Item("Item 2");
         }, \RuntimeException::class, "");
     }
@@ -128,8 +124,8 @@ final class CollectionTest extends \Tester\TestCase
         $this->col[] = new Item("Item 1");
         $this->col[] = new Item("Item 2");
         $array = $this->col->toArray();
-        Assert::type("array", $array);
-        Assert::count(2, $array);
+        $this->assertType("array", $array);
+        $this->assertCount(2, $array);
     }
 
     public function testFromArray(): void
@@ -138,36 +134,36 @@ final class CollectionTest extends \Tester\TestCase
             new Item("Item 1"), new Item("Item 2"),
         ];
         $collection = TestCollection::fromArray($items);
-        Assert::type(TestCollection::class, $collection);
-        Assert::count(2, $collection);
+        $this->assertType(TestCollection::class, $collection);
+        $this->assertCount(2, $collection);
         $collection = ParameterCollection::fromArray($items, "abc");
-        Assert::type(ParameterCollection::class, $collection);
-        Assert::count(2, $collection);
-        Assert::same("abc", $collection->name);
+        $this->assertType(ParameterCollection::class, $collection);
+        $this->assertCount(2, $collection);
+        $this->assertSame("abc", $collection->name);
     }
 
     public function testHasItems(): void
     {
         $this->col[] = new Item("Item 1");
         $this->col[] = new Item("Item 2");
-        Assert::true($this->col->hasItems());
-        Assert::true($this->col->hasItems(["var1" => "Item 1"]));
-        Assert::false($this->col->hasItems(["var1" => "Item 3"]));
-        Assert::false($this->col->hasItems(["var1" => "Item 1"], 2));
+        $this->assertTrue($this->col->hasItems());
+        $this->assertTrue($this->col->hasItems(["var1" => "Item 1"]));
+        $this->assertFalse($this->col->hasItems(["var1" => "Item 3"]));
+        $this->assertFalse($this->col->hasItems(["var1" => "Item 1"], 2));
     }
 
     public function testGetItems(): void
     {
-        Assert::count(0, $this->col->getItems());
+        $this->assertCount(0, $this->col->getItems());
         $this->col[] = new Item("Item 1");
         $this->col[] = new Item("Item 2");
         $this->col[] = new Item("Item 3", BasicEnum::DEF);
-        Assert::count(3, $this->col->getItems());
-        Assert::count(1, $this->col->getItems(["var1" => "Item 1",]));
-        Assert::count(0, $this->col->getItems(["var1" => "Item 4",]));
-        Assert::count(2, $this->col->getItems(["var1<" => "Item 3",]));
-        Assert::count(2, $this->col->getItems(["var2" => BasicEnum::ABC,]));
-        Assert::count(1, $this->col->getItems(["var2!=" => BasicEnum::ABC,]));
+        $this->assertCount(3, $this->col->getItems());
+        $this->assertCount(1, $this->col->getItems(["var1" => "Item 1",]));
+        $this->assertCount(0, $this->col->getItems(["var1" => "Item 4",]));
+        $this->assertCount(2, $this->col->getItems(["var1<" => "Item 3",]));
+        $this->assertCount(2, $this->col->getItems(["var2" => BasicEnum::ABC,]));
+        $this->assertCount(1, $this->col->getItems(["var2!=" => BasicEnum::ABC,]));
     }
 
     public function testGetItem(): void
@@ -176,10 +172,10 @@ final class CollectionTest extends \Tester\TestCase
         $this->col[] = new Item("Item 2");
         $this->col[] = new Item("Item 3");
         $this->col[] = new Item("Item 3");
-        Assert::null($this->col->getItem(["var1" => "Item 4"]));
-        Assert::same($this->col[0], $this->col->getItem(["var1" => "Item 1"]));
-        Assert::same($this->col[2], $this->col->getItem(["var1" => "Item 3"]));
-        Assert::notSame($this->col[3], $this->col->getItem(["var1" => "Item 3"]));
+        $this->assertNull($this->col->getItem(["var1" => "Item 4"]));
+        $this->assertSame($this->col[0], $this->col->getItem(["var1" => "Item 1"]));
+        $this->assertSame($this->col[2], $this->col->getItem(["var1" => "Item 3"]));
+        $this->assertNotSame($this->col[3], $this->col->getItem(["var1" => "Item 3"]));
     }
 
     public function testRemoveByFilter(): void
@@ -188,9 +184,9 @@ final class CollectionTest extends \Tester\TestCase
         $this->col[] = new Item("Item 2");
         $this->col[] = new Item("Item 3");
         $this->col->removeByFilter(["var1!=" => "Item 1"]);
-        Assert::count(1, $this->col);
+        $this->assertCount(1, $this->col);
         $this->col->lock();
-        Assert::exception(function () {
+        $this->assertThrowsException(function () {
             $this->col->removeByFilter(["var1" => "Item 1"]);
         }, \RuntimeException::class);
     }
@@ -200,10 +196,7 @@ final class CollectionTest extends \Tester\TestCase
         $this->col[] = new Item("Item 1");
         $this->col[] = new Item("Item 2");
         $this->col[] = new Item("Item 3");
-        Assert::same(0, $this->col->getIndex(["var1" => "Item 1"]));
-        Assert::null($this->col->getIndex(["var1" => "Item"]));
+        $this->assertSame(0, $this->col->getIndex(["var1" => "Item 1"]));
+        $this->assertNull($this->col->getIndex(["var1" => "Item"]));
     }
 }
-
-$test = new CollectionTest();
-$test->run();
