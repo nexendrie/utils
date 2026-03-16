@@ -1,4 +1,10 @@
 /vendor/
 /public/
-coverage.*
 /composer.lock
+
+# Errors in tests
+*.errors
+
+# Generated reports
+/coverage.*
+/junit.xml
