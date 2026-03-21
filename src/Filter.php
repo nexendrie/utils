@@ -35,7 +35,7 @@ final class Filter
             return "return \"" . get_class($item) . "\" $operator \"$value\";";
         }
         if (preg_match("#([a-zA-Z0-9_]+)\(\)\$#", $key, $matches) === 1) {
-            return "return  \"{$item->{$matches[1]}()}\" $operator  \"$value\";";
+            return "return  \"{$item->{$matches[1]}()}\" $operator  \"$value\";"; // @phpstan-ignore method.dynamicName
         }
         if ($item->$key instanceof UnitEnum) {
             return "return " . $item->$key::class . "::" . $item->$key->name . " $operator " .

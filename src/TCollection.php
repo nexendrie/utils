@@ -100,8 +100,9 @@ trait TCollection
         if ($uniqueProperty === null) {
             return;
         }
-        if ($this->hasItems([$uniqueProperty => $newItem->$uniqueProperty])) {
-            throw new \RuntimeException(sprintf("Duplicate %s %s.", $uniqueProperty, $newItem->$uniqueProperty));
+        $uniqueValue = $newItem->$uniqueProperty; // @phpstan-ignore property.dynamicName
+        if ($this->hasItems([$uniqueProperty => $uniqueValue,])) {
+            throw new \RuntimeException(sprintf("Duplicate %s %s.", $uniqueProperty, $uniqueValue));
         }
     }
 

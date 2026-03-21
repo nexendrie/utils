@@ -35,7 +35,7 @@ final class Intervals
             array_walk($numbers, static function (&$value): void {
                 $value = (int) $value;
             });
-            return (in_array($number, $numbers, true));
+            return (in_array($number, $numbers, true)); // @phpstan-ignore function.impossibleType
         }
         preg_match(self::PATTERN, $interval, $matches);
         /** @var array{start: string[], end: string[], limit1: string, limit2: string} $matches */
