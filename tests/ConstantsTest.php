@@ -9,9 +9,9 @@ namespace Nexendrie\Utils;
  */
 final class ConstantsTest extends \MyTester\TestCase
 {
-    public const ABC_A = "a";
-    public const ABC_B = "b";
-    public const DEF_A = "d";
+    public const string ABC_A = "a";
+    public const string ABC_B = "b";
+    public const string DEF_A = "d";
 
     public function testGetConstantsValues(): void
     {
