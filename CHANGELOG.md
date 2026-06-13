@@ -1,4 +1,4 @@
-Version 1.12.0-dev
+Version 1.12.0
 - raised minimal version of PHP to 8.3
 - possible BC break: null is no longer accepted as index in (T)Collection
 
