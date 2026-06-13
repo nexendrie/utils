@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
+use MyTester\Attributes\TestSuite;
+
+#[TestSuite("Numbers")]
 final class NumbersTest extends \MyTester\TestCase
 {
     public function testRange(): void

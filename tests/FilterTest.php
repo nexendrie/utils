@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-/**
- * @author Jakub Konečný
- * @testCase
- */
+use MyTester\Attributes\TestSuite;
+
+#[TestSuite("Filter")]
 final class FilterTest extends \MyTester\TestCase
 {
     public function testGetOperator(): void

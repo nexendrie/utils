@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-/**
- * @author Jakub Konečný
- * @testCase
- */
+use MyTester\Attributes\TestSuite;
+
+#[TestSuite("Intervals")]
 final class IntervalsTest extends \MyTester\TestCase
 {
     private function tryInterval(string $input, ?string $result): void
