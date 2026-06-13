@@ -1,5 +1,6 @@
 Version 1.12.0-dev
 - raised minimal version of PHP to 8.3
+- possible BC break: null is no longer accepted as index in (T)Collection
 
 Version 1.11.0
 - deprecated Constants::getConstantsValues() in favor of new method getValues

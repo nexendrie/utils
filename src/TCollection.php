@@ -63,7 +63,7 @@ trait TCollection
     }
 
     /**
-     * @param int|null $index
+     * @param int $index
      * @return object
      * @throws \OutOfRangeException
      */
