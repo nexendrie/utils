@@ -23,14 +23,6 @@ final class Numbers
     }
 
     /**
-     * @deprecated Use {@see self::clamp()} instead
-     */
-    public static function range(int $number, int $min, int $max): int
-    {
-        return self::clamp(...func_get_args());
-    }
-
-    /**
      * Check whether a number is within boundaries
      */
     public static function isInRange(int $number, int $min, int $max): bool

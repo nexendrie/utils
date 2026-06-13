@@ -8,13 +8,6 @@ use MyTester\Attributes\TestSuite;
 #[TestSuite("Numbers")]
 final class NumbersTest extends \MyTester\TestCase
 {
-    public function testRange(): void
-    {
-        $this->assertSame(0, Numbers::range(-10, 0, 50)); // @phpstan-ignore staticMethod.deprecated
-        $this->assertSame(50, Numbers::range(100, 0, 50)); // @phpstan-ignore staticMethod.deprecated
-        $this->assertSame(25, Numbers::range(25, 0, 50)); // @phpstan-ignore staticMethod.deprecated
-    }
-
     public function testClam(): void
     {
         $this->assertSame(0, Numbers::clamp(-10, 0, 50));
