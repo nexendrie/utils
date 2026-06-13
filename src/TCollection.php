@@ -64,10 +64,9 @@ trait TCollection
 
     /**
      * @param int $index
-     * @return object
      * @throws \OutOfRangeException
      */
-    public function offsetGet($index): mixed
+    public function offsetGet($index): object
     {
         if ($index < 0 || $index === null || $index >= count($this->items)) {
             throw new \OutOfRangeException("Offset invalid or out of range.");

@@ -1,5 +1,6 @@
 Version 2.0.0-dev
 - BC break: removed methods Constants::getConstantsValues and Numbers::range
+- BC break: narrowed return type of TCollection::offsetGet()
 
 Version 1.12.0
 - raised minimal version of PHP to 8.3
