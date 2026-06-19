@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
+use MyTester\Attributes\BeforeTest;
 use MyTester\Attributes\TestSuite;
 
 #[TestSuite("Collection")]
@@ -10,6 +11,7 @@ final class CollectionTest extends \MyTester\TestCase
 {
     protected Collection $col;
 
+    #[BeforeTest]
     public function setUp(): void
     {
         $this->col = new TestCollection();

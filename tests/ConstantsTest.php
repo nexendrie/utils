@@ -25,7 +25,11 @@ final class ConstantsTest extends \MyTester\TestCase
 
         $result = Constants::getValues(self::class);
         $this->assertType("array", $result);
-        $this->assertCount(9, $result);
+        if (version_compare(PHP_VERSION, "8.4.0") >= 0) {
+            $this->assertCount(8, $result);
+        } else {
+            $this->assertCount(9, $result);
+        }
 
         $result = Constants::getValues(
             class: self::class,
@@ -39,7 +43,11 @@ final class ConstantsTest extends \MyTester\TestCase
             visibilities: [\ReflectionClassConstant::IS_PROTECTED]
         );
         $this->assertType("array", $result);
-        $this->assertCount(1, $result);
+        if (version_compare(PHP_VERSION, "8.4.0") >= 0) {
+            $this->assertCount(0, $result);
+        } else {
+            $this->assertCount(1, $result);
+        }
 
         $this->assertThrowsException(static function () {
             Constants::getValues(class: self::class, visibilities: [15]);
